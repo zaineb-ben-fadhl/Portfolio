@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="fr" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaineb Ben Fadhl — Ingénieure IA & Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080a12;
+    --surface:#0e111c;
+    --surface-2:#151a29;
+    --surface-3:#1b2133;
+    --border:#232a3f;
+    --border-soft:#1a2032;
+    --text:#eef1f8;
+    --text-dim:#98a2ba;
+    --text-faint:#5b6478;
+    --violet:#8b7cf6;
+    --violet-2:#6255d8;
+    --violet-dim:#2c2758;
+    --cyan:#2dd9c9;
+    --cyan-dim:#12433f;
+    --amber:#f3ba52;
+    --amber-dim:#553f16;
+    --red:#ef6d68;
+    --radius:14px;
+    --mono:'JetBrains Mono', monospace;
+    --display:'Sora', sans-serif;
+    --body:'Inter', sans-serif;
+    --ease:cubic-bezier(.16,.8,.24,1);
+    --grad: linear-gradient(120deg, var(--violet), var(--cyan));
+    --shadow-card:0 1px 2px rgba(0,0,0,.35), 0 20px 48px -20px rgba(0,0,0,.7);
+    --shadow-lift:0 1px 2px rgba(0,0,0,.4), 0 30px 70px -22px rgba(139,124,246,.28);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size:56px 56px;
+    opacity:0.35;
+    pointer-events:none;
+    z-index:0;
+    mask-image:radial-gradient(ellipse 75% 55% at 50% 0%, black 30%, transparent 100%);
+  }
+  .scroll-progress{position:fixed; top:0; left:0; height:3px; width:0%; background:var(--grad); z-index:60; transition:width .1s linear; box-shadow:0 0 12px var(--violet);}
+
+  .aurora{position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none;}
+  .aurora span{position:absolute; border-radius:50%; filter:blur(90px); opacity:.30; animation:drift 24s ease-in-out infinite;}
+  .aurora span:nth-child(1){width:520px; height:520px; background:var(--violet); top:-200px; left:-140px;}
+  .aurora span:nth-child(2){width:460px; height:460px; background:var(--cyan); top:-140px; right:-180px; animation-delay:-9s; animation-duration:28s; opacity:.20;}
+  .aurora span:nth-child(3){width:340px; height:340px; background:var(--violet); bottom:-220px; left:32%; animation-delay:-15s; animation-duration:32s; opacity:.14;}
+  @keyframes drift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(40px,30px) scale(1.08);}66%{transform:translate(-30px,15px) scale(0.96);}}
+
+  .net{position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.55;}
+  .net circle{fill:var(--violet); opacity:.55; animation:pulseNode 4s ease-in-out infinite;}
+  .net circle:nth-child(odd){fill:var(--cyan); animation-delay:1.4s;}
+  .net line{stroke:url(#netGrad); stroke-width:1; opacity:.35;}
+  @keyframes pulseNode{0%,100%{opacity:.25; r:2.2;}50%{opacity:.85; r:3.4;}}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .section-head,.readme,.timeline,.proj-grid,.skill-grid,.grid3,.contact-band{opacity:0; transform:translateY(26px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .section-head.in,.readme.in,.timeline.in,.proj-grid.in,.skill-grid.in,.grid3.in,.contact-band.in{opacity:1; transform:translateY(0);}
+  .timeline.in .tl-item{animation:riseIn .6s var(--ease) backwards;}
+  .timeline.in .tl-item:nth-child(2){animation-delay:.08s;}
+  .timeline.in .tl-item:nth-child(3){animation-delay:.16s;}
+  .proj-grid.in .card{animation:riseIn .6s var(--ease) backwards;}
+  .proj-grid.in .card:nth-child(2){animation-delay:.06s;}
+  .proj-grid.in .card:nth-child(3){animation-delay:.12s;}
+  .proj-grid.in .card:nth-child(4){animation-delay:.18s;}
+  .proj-grid.in .card:nth-child(5){animation-delay:.24s;}
+  .proj-grid.in .card:nth-child(6){animation-delay:.30s;}
+  .proj-grid.in .card:nth-child(7){animation-delay:.36s;}
+  .skill-grid.in .skill-card{animation:riseIn .6s var(--ease) backwards;}
+  .skill-grid.in .skill-card:nth-child(2){animation-delay:.07s;}
+  .skill-grid.in .skill-card:nth-child(3){animation-delay:.14s;}
+  .skill-grid.in .skill-card:nth-child(4){animation-delay:.21s;}
+  .skill-grid.in .skill-card:nth-child(5){animation-delay:.28s;}
+  .grid3.in .panel{animation:riseIn .6s var(--ease) backwards;}
+  .grid3.in .panel:nth-child(2){animation-delay:.08s;}
+  .grid3.in .panel:nth-child(3){animation-delay:.16s;}
+  @keyframes riseIn{from{opacity:0; transform:translateY(26px);}to{opacity:1; transform:translateY(0);}}
+
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  ::selection{background:var(--violet); color:#0a0a12;}
+  :focus-visible{outline:2px solid var(--cyan); outline-offset:3px; border-radius:4px;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px; position:relative; z-index:1;}
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-dim); display:flex; align-items:center; gap:8px; margin-bottom:14px;}
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 10px var(--cyan);}
+
+  header.nav{position:sticky; top:0; z-index:50; background:rgba(8,10,18,0.72); backdrop-filter:blur(16px) saturate(140%); border-bottom:1px solid var(--border);}
+  .nav-inner{max-width:1180px; margin:0 auto; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px;}
+  .nav-brand{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:15px;}
+  .nav-brand .mark{width:30px; height:30px; border-radius:9px; background:var(--grad); display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:800; font-size:14px; color:#0a0a12;}
+  .nav-links{display:flex; gap:28px; font-size:14px; color:var(--text-dim);}
+  .nav-links a{position:relative; padding:4px 0; transition:color .25s var(--ease);}
+  .nav-links a::after{content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--grad); transition:width .3s var(--ease); border-radius:2px;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-links a:hover::after, .nav-links a.active::after{width:100%;}
+  .nav-links a.active{color:var(--text);}
+  .nav-actions{display:flex; gap:10px; align-items:center;}
+  @media (max-width:860px){.nav-links{display:none;}}
+
+  .btn{font-family:var(--mono); font-size:13px; letter-spacing:.02em; padding:11px 18px; border-radius:9px; border:1px solid var(--border); display:inline-flex; align-items:center; gap:8px; cursor:pointer; transition:transform .3s var(--ease), border-color .25s var(--ease), background .25s var(--ease), box-shadow .35s var(--ease); background:transparent; color:var(--text);}
+  .btn:hover{transform:translateY(-2px); border-color:var(--text-faint);}
+  .btn-primary{background:var(--grad); color:#0a0a12; border:none; font-weight:700; box-shadow:0 12px 30px -12px rgba(139,124,246,.55);}
+  .btn-primary:hover{box-shadow:0 16px 38px -12px rgba(139,124,246,.75);}
+  .btn-outline{border-color:var(--violet); color:var(--text);}
+  .btn-outline:hover{background:rgba(139,124,246,.1);}
+  .btn-ghost{color:var(--text-dim);}
+  .btn-sm{padding:8px 14px; font-size:12px;}
+  #langToggle{font-weight:700; min-width:44px; justify-content:center;}
+
+  .hero{padding:104px 0 68px; position:relative;}
+  .hero-in{opacity:0; animation:riseIn .8s var(--ease) forwards;}
+  .hero-in.d1{animation-delay:.05s;} .hero-in.d2{animation-delay:.16s;} .hero-in.d3{animation-delay:.27s;}
+  .hero-in.d4{animation-delay:.38s;} .hero-in.d5{animation-delay:.49s;} .hero-in.d6{animation-delay:.6s;}
+  .status-pill{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; color:var(--cyan); border:1px solid var(--cyan-dim); background:rgba(45,217,201,.08); padding:6px 12px; border-radius:99px; margin-bottom:28px;}
+  .status-pill .pulse{width:7px; height:7px; border-radius:50%; background:var(--cyan); animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(45,217,201,.55);}70%{box-shadow:0 0 0 9px rgba(45,217,201,0);}100%{box-shadow:0 0 0 0 rgba(45,217,201,0);}}
+  h1.name{font-family:var(--display); font-weight:800; font-size:clamp(42px,7vw,86px); line-height:.98; letter-spacing:-.02em; margin-bottom:10px;}
+  h1.name .grad{background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  .role-line{font-family:var(--mono); font-size:clamp(14px,2vw,18px); color:var(--violet); margin-bottom:28px; letter-spacing:.01em; min-height:1.4em;}
+  .role-line .caret{display:inline-block; width:8px; height:1em; background:var(--violet); margin-left:2px; vertical-align:-2px; animation:caretBlink 1s steps(1) infinite;}
+  @keyframes caretBlink{50%{opacity:0;}}
+  .hero-desc{max-width:640px; font-size:17px; color:var(--text-dim); margin-bottom:36px;}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:56px;}
+
+  .metric-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--border); box-shadow:var(--shadow-card);}
+  .metric{background:var(--surface); padding:22px 18px; transition:background .3s var(--ease);}
+  .metric:hover{background:var(--surface-2);}
+  .metric .v{font-family:var(--display); font-size:28px; font-weight:800; background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  .metric .l{font-family:var(--mono); font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.08em; margin-top:4px;}
+  @media (max-width:700px){.metric-strip{grid-template-columns:repeat(2,1fr);}}
+
+  section{padding:92px 0; position:relative; border-top:1px solid var(--border-soft);}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:46px; flex-wrap:wrap;}
+  h2.title{font-family:var(--display); font-size:clamp(28px,4vw,40px); font-weight:700; letter-spacing:-.01em;}
+  .section-tag{font-family:var(--mono); font-size:12px; color:var(--text-faint);}
+
+  .readme{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+  .readme-bar{display:flex; align-items:center; gap:10px; padding:12px 18px; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:12px; color:var(--text-faint);}
+  .readme-body{padding:30px 30px 32px; display:flex; gap:34px; align-items:flex-start;}
+  .readme-body p{font-size:16.5px; color:var(--text-dim); max-width:800px;}
+  .readme-body strong{color:var(--text); font-weight:600;}
+  .readme-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px;}
+  .readme-text{flex:1; min-width:0;}
+  .profile-photo{flex:0 0 auto; width:168px; height:168px; border-radius:20px; position:relative; padding:3px; background:var(--grad); box-shadow:0 18px 46px -14px rgba(139,124,246,.5);}
+  .profile-photo::after{content:''; position:absolute; inset:-10px; border-radius:26px; border:1px solid var(--border); opacity:.6; pointer-events:none;}
+  .profile-photo .ph-inner{width:100%; height:100%; border-radius:17px; overflow:hidden; background:var(--surface-2); display:flex; align-items:center; justify-content:center;}
+  .profile-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .profile-photo .ph-fallback{display:none; width:100%; height:100%; align-items:center; justify-content:center; font-family:var(--display); font-weight:800; font-size:44px; background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+  @media (max-width:640px){ .readme-body{flex-direction:column; align-items:center; text-align:center;} .profile-photo{width:140px; height:140px;} }
+  .profil-name{font-family:var(--display); font-weight:700; font-size:22px; margin-bottom:6px;}
+  .role-line.profil-role{margin-bottom:16px; font-size:13.5px;}
+
+  .timeline{display:flex; flex-direction:column; gap:0;}
+  .tl-item{display:grid; grid-template-columns:170px 1fr; gap:28px; padding:34px 0; border-top:1px solid var(--border-soft); position:relative;}
+  .tl-item:first-child{border-top:none;}
+  .tl-item::before{content:''; position:absolute; left:170px; top:38px; width:9px; height:9px; margin-left:-4.5px; border-radius:50%; background:var(--violet); box-shadow:0 0 0 4px var(--violet-dim);}
+  .tl-date{font-family:var(--mono); font-size:12.5px; color:var(--text-faint); padding-top:4px;}
+  .tl-role{font-family:var(--display); font-size:20px; font-weight:700; margin-bottom:2px; padding-left:20px;}
+  .tl-org{font-family:var(--mono); font-size:13px; color:var(--cyan); margin-bottom:14px; padding-left:20px;}
+  .tl-sub{color:var(--text-dim); font-size:14.5px; margin-bottom:14px; padding-left:20px;}
+  .tl-item ul{display:flex; flex-direction:column; gap:8px; margin-bottom:16px; padding-left:20px;}
+  .tl-item li{position:relative; padding-left:18px; font-size:14.5px; color:var(--text-dim);}
+  .tl-item li::before{content:'›'; position:absolute; left:0; color:var(--violet); font-weight:700;}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; padding-left:20px;}
+  .tag{font-family:var(--mono); font-size:11.5px; color:var(--text-dim); border:1px solid var(--border); padding:5px 10px; border-radius:7px; background:var(--surface);}
+  @media (max-width:700px){.tl-item{grid-template-columns:1fr;} .tl-item::before{display:none;} .tl-role,.tl-org,.tl-sub,.tl-item ul,.tags{padding-left:0;}}
+
+  .proj-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  @media (max-width:860px){.proj-grid{grid-template-columns:1fr;}}
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); display:flex; flex-direction:column; overflow:hidden; transition:border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease); position:relative;}
+  .card::before{content:''; position:absolute; inset:0; opacity:0; pointer-events:none; z-index:0; background:radial-gradient(280px circle at var(--mx,50%) var(--my,0%), rgba(139,124,246,.14), transparent 70%); transition:opacity .4s var(--ease);}
+  .card:hover::before{opacity:1;}
+  .card:hover{border-color:var(--violet); transform:translateY(-4px); box-shadow:var(--shadow-lift);}
+  .card > *{position:relative; z-index:1;}
+  .card-bar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 18px; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:12px; color:var(--text-faint);}
+  .badge{font-family:var(--mono); font-size:11px; padding:3px 10px; border-radius:99px; border:1px solid var(--violet-dim); color:var(--violet); white-space:nowrap;}
+  .badge.win{border-color:var(--amber-dim); color:var(--amber); background:rgba(243,186,82,.08);}
+  .card-body{padding:22px 22px 0;}
+  .card-body h3{font-family:var(--display); font-size:19px; font-weight:700; margin-bottom:12px;}
+  .card-body ul{display:flex; flex-direction:column; gap:8px; margin-bottom:6px;}
+  .card-body li{position:relative; padding-left:16px; font-size:13.8px; color:var(--text-dim);}
+  .card-body li::before{content:'·'; position:absolute; left:0; color:var(--cyan); font-weight:900; font-size:18px; line-height:1;}
+  .proj-tags{display:flex; flex-wrap:wrap; gap:6px; padding:18px 22px 22px;}
+
+  /* ---------- COMPÉTENCES / SKILLS ---------- */
+  .skill-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media (max-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:600px){.skill-grid{grid-template-columns:1fr;}}
+
+  .skill-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px 24px 22px;
+    transition:border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .skill-card::before{
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:3px;
+    background:var(--card-accent, var(--grad));
+    border-radius:0 0 2px 2px;
+    transition:height .3s var(--ease), opacity .3s var(--ease);
+  }
+  .skill-card:hover{
+    border-color:var(--card-accent-color, var(--cyan));
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-lift);
+  }
+  .skill-card:hover::before{
+    height:5px;
+    opacity:1;
+  }
+
+  .skill-card .sk-header{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .skill-card .sk-head{
+    font-family:var(--display);
+    font-size:15px;
+    font-weight:700;
+    color:var(--text);
+    letter-spacing:-0.01em;
+    line-height:1.2;
+  }
+  .skill-card .sk-divider{
+    width:18px;
+    height:2px;
+    border-radius:1px;
+    background:var(--card-accent, var(--grad));
+    opacity:0.7;
+    flex-shrink:0;
+    align-self:center;
+    margin-top:2px;
+  }
+  .skill-card .sk-count{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-faint);
+    background:var(--surface-2);
+    padding:3px 8px;
+    border-radius:5px;
+    letter-spacing:0.04em;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  .skill-card .sk-progress-track{
+    width:100%;
+    height:3px;
+    background:var(--surface-3);
+    border-radius:99px;
+    overflow:hidden;
+    margin-top:-6px;
+  }
+  .skill-card .sk-progress-fill{
+    height:100%;
+    border-radius:99px;
+    background:var(--card-accent, var(--grad));
+    width:0%;
+    transition:width 1.2s var(--ease);
+  }
+  .skill-grid.in .skill-card .sk-progress-fill{
+    width:var(--progress, 70%);
+  }
+
+  .skill-card .tags{
+    padding-left:0;
+    gap:8px;
+    margin-top:0;
+  }
+  .skill-card .tag{
+    transition:border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
+  }
+  .skill-card .tag:hover{
+    transform:translateY(-1px);
+  }
+
+  .skill-card:nth-child(1){
+    --card-accent:linear-gradient(120deg, var(--violet), var(--violet-2));
+    --card-accent-color:var(--violet);
+    --progress:78%;
+  }
+  .skill-card:nth-child(1) .tag:hover{
+    border-color:var(--violet);
+    color:var(--text);
+    background:rgba(139,124,246,.08);
+  }
+  .skill-card:nth-child(2){
+    --card-accent:linear-gradient(120deg, var(--cyan), #1a9c90);
+    --card-accent-color:var(--cyan);
+    --progress:72%;
+  }
+  .skill-card:nth-child(2) .tag:hover{
+    border-color:var(--cyan);
+    color:var(--text);
+    background:rgba(45,217,201,.08);
+  }
+  .skill-card:nth-child(3){
+    --card-accent:linear-gradient(120deg, var(--amber), #d99a2b);
+    --card-accent-color:var(--amber);
+    --progress:80%;
+  }
+  .skill-card:nth-child(3) .tag:hover{
+    border-color:var(--amber);
+    color:var(--text);
+    background:rgba(243,186,82,.08);
+  }
+  .skill-card:nth-child(4){
+    --card-accent:linear-gradient(120deg, var(--red), #c94b46);
+    --card-accent-color:var(--red);
+    --progress:74%;
+  }
+  .skill-card:nth-child(4) .tag:hover{
+    border-color:var(--red);
+    color:var(--text);
+    background:rgba(239,109,104,.08);
+  }
+  .skill-card:nth-child(5){
+    --card-accent:var(--grad);
+    --card-accent-color:var(--violet);
+    --progress:50%;
+  }
+  .skill-card:nth-child(5) .tag:hover{
+    border-color:var(--violet);
+    color:var(--text);
+    background:rgba(139,124,246,.08);
+  }
+
+  /* ---------- FORMATION, CERTIFICATIONS & LANGUES (MODERNISÉ SANS EMOJI) ---------- */
+  .grid3{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .grid3 .cert-panel{grid-column:1 / -1;}
+  @media (max-width:860px){.grid3{grid-template-columns:1fr;}}
+
+  .panel{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px;}
+
+  .panel h4{
+    font-family:var(--mono);
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--text-faint);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .panel h4::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--border);
+    opacity:0.6;
+  }
+
+  .cert-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px;}
+  @media (max-width:520px){.cert-grid{grid-template-columns:1fr;}}
+
+  .cert-card{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    padding:16px;
+    border-radius:12px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .cert-card::before{
+    content:'';
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width:3px;
+    background:var(--cc, var(--violet));
+    border-radius:0 2px 2px 0;
+    transition:width .3s var(--ease);
+  }
+  .cert-card:hover{
+    transform:translateY(-3px);
+    border-color:var(--cc, var(--violet));
+    background:var(--surface-3);
+  }
+  .cert-card:hover::before{
+    width:5px;
+  }
+
+  .cert-info .c-name{
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text);
+    line-height:1.3;
+    padding-left:8px;
+  }
+  .cert-info .c-issuer{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--text-faint);
+    margin-top:2px;
+    padding-left:8px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .cert-info .c-issuer::before{
+    content:'';
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:var(--cc, var(--violet));
+    opacity:0.7;
+  }
+
+  .cert-card.cc-cisco{--cc:#5cc4ff;}
+  .cert-card.cc-certiport{--cc:#2dd9c9;}
+  .cert-card.cc-ibm{--cc:#7aa8ff;}
+  .cert-card.cc-nvidia{--cc:#8fdb4f;}
+  .cert-card.cc-datacamp{--cc:#c78bff;}
+  .cert-card.cc-lang{--cc:#f3ba52;}
+
+  .edu-item{padding-bottom:18px; margin-bottom:18px; border-bottom:1px solid var(--border-soft);}
+  .edu-item:last-child{border:none; margin:0; padding:0;}
+  .edu-item .e-deg{font-weight:600; font-size:14.5px; margin-bottom:3px;}
+  .edu-item .e-org{color:var(--violet); font-family:var(--mono); font-size:12px; margin-bottom:3px;}
+  .edu-item .e-date{color:var(--text-faint); font-family:var(--mono); font-size:11.5px;}
+
+  .lang-row{display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-top:1px solid var(--border-soft);}
+  .lang-row:first-child{border-top:none;}
+  .lang-row span:first-child{font-weight:500; color:var(--text);}
+  .lang-bar{width:100px; height:5px; background:var(--surface-3); border-radius:99px; overflow:hidden;}
+  .lang-bar i{display:block; height:100%; background:var(--grad); border-radius:99px;}
+
+  .contact-band{background:linear-gradient(135deg, var(--surface) 0%, var(--surface-3) 100%); border:1px solid var(--border); border-radius:20px; padding:58px 48px; display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap; position:relative; overflow:hidden;}
+  .contact-band::before{content:''; position:absolute; inset:0; background:radial-gradient(420px circle at 90% 10%, rgba(139,124,246,.18), transparent 70%); pointer-events:none;}
+  .contact-band > *{position:relative; z-index:1;}
+  .contact-band h2{font-family:var(--display); font-size:clamp(26px,4vw,38px); font-weight:800; max-width:520px; margin-bottom:10px;}
+  .contact-band p{color:var(--text-dim); max-width:480px; margin-bottom:0;}
+  .contact-actions{display:flex; flex-direction:column; gap:12px; min-width:260px;}
+  .contact-actions .btn{justify-content:center;}
+  footer{padding:32px; text-align:center; font-family:var(--mono); font-size:11.5px; color:var(--text-faint);}
+
+  .ai-fab{position:fixed; bottom:26px; right:26px; z-index:90; display:flex; align-items:center; gap:10px; background:var(--grad); color:#0a0a12; border:none; border-radius:99px; padding:14px 20px; font-family:var(--mono); font-size:13px; font-weight:700; cursor:pointer; box-shadow:0 12px 32px -8px rgba(139,124,246,.6); transition:transform .2s;}
+  .ai-fab:hover{transform:translateY(-2px) scale(1.02);}
+  .ai-fab .dot2{width:7px; height:7px; border-radius:50%; background:#0a0a12; animation:pulse2 1.6s infinite;}
+  @keyframes pulse2{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+  .ai-panel{position:fixed; bottom:96px; right:26px; z-index:91; width:400px; max-width:calc(100vw - 40px); height:min(600px,72vh); background:var(--surface); border:1px solid var(--border); border-radius:18px; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 24px 70px rgba(0,0,0,.55); opacity:0; visibility:hidden; transform:translateY(16px) scale(.97); transition:opacity .3s var(--ease), transform .3s var(--ease), visibility 0s linear .3s;}
+  .ai-panel.open{opacity:1; visibility:visible; transform:translateY(0) scale(1); transition:opacity .3s var(--ease), transform .3s var(--ease), visibility 0s;}
+  .ai-head{padding:15px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:10px; background:linear-gradient(180deg, var(--surface-2), var(--surface));}
+  .ai-head-id{display:flex; align-items:center; gap:11px; min-width:0;}
+  .ai-avatar{width:36px; height:36px; border-radius:10px; background:var(--grad); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; position:relative;}
+  .ai-avatar::after{content:''; position:absolute; bottom:-2px; right:-2px; width:9px; height:9px; border-radius:50%; background:var(--cyan); border:2px solid var(--surface); box-shadow:0 0 6px var(--cyan);}
+  .ai-head .t{font-family:var(--display); font-size:13.5px; font-weight:700; color:var(--text); line-height:1.3;}
+  .ai-head .sub{font-family:var(--mono); font-size:10.5px; color:var(--cyan); margin-top:1px; display:flex; align-items:center; gap:5px;}
+  .ai-body{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:4px; scroll-behavior:smooth;}
+  .msg-row{display:flex; gap:9px; margin-bottom:14px; max-width:100%;}
+  .msg-row.user-row{justify-content:flex-end;}
+  .msg-avatar{width:26px; height:26px; border-radius:8px; background:var(--grad); display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; margin-top:2px;}
+  .msg-col{display:flex; flex-direction:column; gap:8px; min-width:0; max-width:84%;}
+  .msg{font-size:13.4px; line-height:1.6; padding:11px 14px; border-radius:13px;}
+  .msg.bot{background:var(--surface-2); color:var(--text); border:1px solid var(--border); border-top-left-radius:4px;}
+  .msg.bot p{margin:0 0 8px;}
+  .msg.bot p:last-child{margin-bottom:0;}
+  .msg.bot ul{list-style:none; margin:6px 0 0; padding:0; display:flex; flex-direction:column; gap:6px;}
+  .msg.bot li{position:relative; padding-left:16px; font-size:13px; color:var(--text-dim);}
+  .msg.bot li::before{content:'›'; position:absolute; left:0; color:var(--cyan); font-weight:700;}
+  .msg.bot strong{color:var(--cyan); font-weight:600;}
+  .msg.bot .src{display:inline-flex; align-items:center; gap:5px; margin-top:9px; font-family:var(--mono); font-size:10px; color:var(--text-faint); border-top:1px dashed var(--border); padding-top:8px; width:100%;}
+  .msg.user{background:var(--grad); color:#0a0a12; font-weight:600; border-top-right-radius:4px;}
+  .msg.typing{display:flex; gap:4px; align-items:center; width:fit-content;}
+  .msg.typing span{width:5px; height:5px; border-radius:50%; background:var(--text-faint); animation:tp 1s infinite;}
+  .msg.typing span:nth-child(2){animation-delay:.15s;} .msg.typing span:nth-child(3){animation-delay:.3s;}
+  @keyframes tp{0%,60%,100%{opacity:.3;}30%{opacity:1;}}
+  .followups{display:flex; flex-wrap:wrap; gap:6px;}
+  .followups button{font-family:var(--body); font-size:11.5px; color:var(--violet); background:rgba(139,124,246,.08); border:1px solid var(--violet-dim); padding:6px 11px; border-radius:99px; cursor:pointer; transition:border-color .2s, background .2s, color .2s;}
+  .followups button:hover{border-color:var(--violet); background:rgba(139,124,246,.16); color:var(--text);}
+  .ai-suggest{display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px;}
+  .ai-suggest button{font-family:var(--mono); font-size:11px; color:var(--text-dim); background:var(--surface-2); border:1px solid var(--border); padding:6px 10px; border-radius:99px; cursor:pointer; transition:border-color .2s, color .2s;}
+  .ai-suggest button:hover{border-color:var(--cyan); color:var(--text);}
+  .ai-input-row{display:flex; gap:8px; padding:12px; border-top:1px solid var(--border);}
+  .ai-input-row input{flex:1; background:var(--surface-2); border:1px solid var(--border); border-radius:9px; padding:10px 12px; color:var(--text); font-family:var(--body); font-size:13.5px;}
+  .ai-input-row input:focus{outline:none; border-color:var(--cyan);}
+  .ai-send{background:var(--grad); border:none; border-radius:9px; padding:0 14px; color:#0a0a12; cursor:pointer; font-weight:800; display:flex; align-items:center; justify-content:center;}
+  .ai-send:disabled{opacity:.5; cursor:not-allowed;}
+
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001s !important; transition-duration:.001s !important;}}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand"><span class="mark">ZB</span><span>Zaineb Ben Fadhl</span></div>
+    <nav class="nav-links">
+      <a href="#profil" data-fr="profil" data-en="profile">profil</a>
+      <a href="#experience" data-fr="expérience" data-en="experience">expérience</a>
+      <a href="#projets" data-fr="projets" data-en="projects">projets</a>
+      <a href="#competences" data-fr="compétences" data-en="skills">compétences</a>
+      <a href="#contact" data-fr="contact" data-en="contact">contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-outline btn-sm" id="langToggle" type="button" title="Switch language / Changer de langue">EN</button>
+      <a class="btn btn-ghost btn-sm" href="https://www.linkedin.com/in/zaineb-ben-fadhl-619438308/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-primary btn-sm" id="navCvBtn" href="Zaineb_Ben_Fadhl_CV.pdf" download data-fr="↓ CV" data-en="↓ Resume">↓ CV</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" style="border-top:none;">
+    <div class="aurora"><span></span><span></span><span></span></div>
+    <svg class="net" viewBox="0 0 1180 520" preserveAspectRatio="xMidYMid slice">
+      <defs><linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8b7cf6"/><stop offset="100%" stop-color="#2dd9c9"/></linearGradient></defs>
+      <line x1="120" y1="80" x2="360" y2="160"/><line x1="360" y1="160" x2="300" y2="330"/><line x1="360" y1="160" x2="600" y2="90"/>
+      <line x1="600" y1="90" x2="820" y2="200"/><line x1="820" y1="200" x2="1040" y2="120"/><line x1="820" y1="200" x2="900" y2="380"/>
+      <line x1="300" y1="330" x2="560" y2="400"/><line x1="560" y1="400" x2="900" y2="380"/>
+      <circle cx="120" cy="80" r="3"/><circle cx="360" cy="160" r="3"/><circle cx="300" cy="330" r="3"/><circle cx="600" cy="90" r="3"/>
+      <circle cx="820" cy="200" r="3"/><circle cx="1040" cy="120" r="3"/><circle cx="900" cy="380" r="3"/><circle cx="560" cy="400" r="3"/>
+    </svg>
+    <div class="status-pill hero-in d1"><span class="pulse"></span> <span data-fr="DISPONIBLE IMMÉDIATEMENT — DIPLÔMÉE 2026" data-en="AVAILABLE IMMEDIATELY — GRADUATING 2026">DISPONIBLE IMMÉDIATEMENT — DIPLÔMÉE 2026</span></div>
+    <h1 class="name hero-in d2">Zaineb <span class="grad">Ben Fadhl</span></h1>
+    <div class="role-line hero-in d3" id="roleLine">&gt; <span id="roleTyped"></span><span class="caret"></span></div>
+    <p class="hero-desc hero-in d4" data-fr="Je conçois et déploie des solutions IA combinant Machine Learning, Computer Vision, NLP et MLOps. Passionnée par la création de systèmes intelligents scalables, je transforme la donnée en applications concrètes à impact mesurable." data-en="I design and deploy AI-powered solutions that combine Machine Learning, Computer Vision, NLP, and MLOps. Passionate about building scalable intelligent systems, I transform data into real-world applications that deliver measurable impact.">Je conçois et déploie des solutions IA combinant Machine Learning, Computer Vision, NLP et MLOps. Passionnée par la création de systèmes intelligents scalables, je transforme la donnée en applications concrètes à impact mesurable.</p>
+    <div class="hero-actions hero-in d5">
+      <a class="btn btn-primary" id="cvBtn" href="Zaineb_Ben_Fadhl_CV.pdf" download data-fr="↓ Télécharger le CV" data-en="↓ Download Resume">↓ Télécharger le CV</a>
+      <a class="btn btn-outline" id="mailBtn" href="#" data-fr="✉ Email direct" data-en="✉ Direct Email">✉ Email direct</a>
+      <a class="btn" id="waBtn" href="#" target="_blank" rel="noopener">↗ WhatsApp</a>
+    </div>
+    <div class="metric-strip hero-in d6">
+      <div class="metric"><div class="v" data-count="7">0</div><div class="l" data-fr="projets déployés" data-en="deployed projects">projets déployés</div></div>
+      <div class="metric"><div class="v" data-count="3">0</div><div class="l" data-fr="stages IA & data" data-en="AI & data internships">stages IA & data</div></div>
+      <div class="metric"><div class="v" data-count="10" data-suffix="+">0</div><div class="l" data-fr="certifications" data-en="certifications">certifications</div></div>
+      <div class="metric"><div class="v" data-fr="3e" data-en="3rd">3e</div><div class="l" data-fr="place — TechX 2025" data-en="place — TechX 2025">place — TechX 2025</div></div>
+    </div>
+  </section>
+
+  <section id="profil">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span> <span data-fr="profil" data-en="profile">profil</span></div>
+      <div class="readme">
+        <div class="readme-bar" data-fr="profil.md — ingénieure IA & data scientist" data-en="profile.md — AI engineer & data scientist">profil.md — ingénieure IA & data scientist</div>
+        <div class="readme-body">
+          <div class="profile-photo">
+            <div class="ph-inner">
+              <img src="1782600722574.jpg" alt="Photo de Zaineb Ben Fadhl" id="profilePhotoImg" onerror="this.style.display='none'; document.getElementById('photoFallback').style.display='flex';">
+              <div class="ph-fallback" id="photoFallback">ZB</div>
+            </div>
+          </div>
+          <div class="readme-text">
+            <div class="profil-name">Zaineb Ben Fadhl</div>
+            <div class="role-line profil-role"><span id="roleTypedProfil"></span><span class="caret"></span></div>
+            <p data-fr="<strong>Ingénieure diplômée en Intelligence Artificielle et Data Science</strong>, avec une expertise en NLP, LLM et architectures RAG, ainsi qu'en Computer Vision, Machine Learning, Deep Learning et MLOps. Expérience confirmée dans la conception de solutions IA et data de bout en bout : de l'analyse du besoin métier à la mise en production des modèles, incluant le déploiement conteneurisé (Docker, Kubernetes) et cloud (Azure). À la recherche d'un poste d'<strong>Ingénieure IA</strong> ou <strong>Data Scientist</strong>." data-en="<strong>Engineering graduate in Artificial Intelligence and Data Science</strong>, with expertise in NLP, LLM and RAG architectures, as well as Computer Vision, Machine Learning, Deep Learning and MLOps. Proven experience designing end-to-end AI and data solutions: from business-need analysis to model production, including containerized deployment (Docker, Kubernetes) and cloud (Azure). Looking for a position as <strong>AI Engineer</strong> or <strong>Data Scientist</strong>.">
+              <strong>Ingénieure diplômée en Intelligence Artificielle et Data Science</strong>, avec une expertise en NLP, LLM et architectures RAG, ainsi qu'en Computer Vision, Machine Learning, Deep Learning et MLOps. Expérience confirmée dans la conception de solutions IA et data de bout en bout : de l'analyse du besoin métier à la mise en production des modèles, incluant le déploiement conteneurisé (Docker, Kubernetes) et cloud (Azure). À la recherche d'un poste d'<strong>Ingénieure IA</strong> ou <strong>Data Scientist</strong>.
+            </p>
+            <div class="readme-chips">
+              <span class="tag">NLP</span><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Computer Vision</span>
+              <span class="tag">Deep Learning</span><span class="tag">MLOps</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Azure</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow"><span class="dot"></span> <span data-fr="historique" data-en="history">historique</span></div><h2 class="title" data-fr="Expérience professionnelle" data-en="Professional Experience">Expérience professionnelle</h2></div>
+        <span class="section-tag" data-fr="3 stages — 2024 → 2026" data-en="3 internships — 2024 → 2026">3 stages — 2024 → 2026</span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date" data-fr="JANV 2026<br>— MAI 2026" data-en="JAN 2026<br>— MAY 2026">JANV 2026<br>— MAI 2026</div>
+          <div>
+            <div class="tl-role" data-fr="Ingénieure IA — stage de fin d'études" data-en="AI Engineer — Final-Year Internship">Ingénieure IA — stage de fin d'études</div>
+            <div class="tl-org">Anavid France</div>
+            <div class="tl-sub" data-fr="Amélioration continue d'un modèle de détection d'actions par apprentissage par renforcement & MLOps" data-en="Continuous improvement of an action-detection model via reinforcement learning & MLOps">Amélioration continue d'un modèle de détection d'actions par apprentissage par renforcement & MLOps</div>
+            <ul>
+              <li data-fr="Conception et entraînement d'un système de détection d'actions par deep learning, spécialisé dans la détection de vols sur flux vidéo de surveillance en continu" data-en="Designed and trained a deep learning action-detection system specialized in theft detection on continuous surveillance video streams">Conception et entraînement d'un système de détection d'actions par deep learning, spécialisé dans la détection de vols sur flux vidéo de surveillance en continu</li>
+              <li data-fr="Déploiement d'un mécanisme d'amélioration continue par apprentissage par renforcement, intégrant les retours terrain en temps réel" data-en="Deployed a continuous-improvement mechanism using reinforcement learning, integrating real-time field feedback">Déploiement d'un mécanisme d'amélioration continue par apprentissage par renforcement, intégrant les retours terrain en temps réel</li>
+              <li data-fr="Optimisation de l'efficacité d'apprentissage via des techniques d'Active Learning pour prioriser les données les plus informatives" data-en="Optimized learning efficiency using Active Learning techniques to prioritize the most informative data">Optimisation de l'efficacité d'apprentissage via des techniques d'Active Learning pour prioriser les données les plus informatives</li>
+              <li data-fr="Accélération de l'adaptation du modèle à de nouvelles actions grâce à des méthodes de Meta-Learning" data-en="Accelerated model adaptation to new actions using Meta-Learning methods">Accélération de l'adaptation du modèle à de nouvelles actions grâce à des méthodes de Meta-Learning</li>
+              <li data-fr="Architecture de pipelines CI/CD avec suivi de la dérive des données (data drift) via Prometheus et rollback automatique vers une version stable" data-en="Built CI/CD pipelines with data drift monitoring via Prometheus and automatic rollback to a stable version">Architecture de pipelines CI/CD avec suivi de la dérive des données (data drift) via Prometheus et rollback automatique vers une version stable</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">OpenCV</span>
+              <span class="tag">Reinforcement Learning</span><span class="tag">Active Learning</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Prometheus</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date" data-fr="JUIN 2025<br>— JUIL 2025" data-en="JUN 2025<br>— JUL 2025">JUIN 2025<br>— JUIL 2025</div>
+          <div>
+            <div class="tl-role" data-fr="Développeuse BI — stage" data-en="BI Developer — Internship">Développeuse BI — stage</div>
+            <div class="tl-org">LEONI Sousse</div>
+            <div class="tl-sub" data-fr="Business Intelligence & développement web (Power BI / ReactJS)" data-en="Business Intelligence & web development (Power BI / ReactJS)">Business Intelligence & développement web (Power BI / ReactJS)</div>
+            <ul>
+              <li data-fr="Conception de tableaux de bord Power BI interactifs pour le suivi RH et production, adoptés par plus de 50 employés au quotidien" data-en="Designed interactive Power BI dashboards for HR and production tracking, used daily by 50+ employees">Conception de tableaux de bord Power BI interactifs pour le suivi RH et production, adoptés par plus de 50 employés au quotidien</li>
+              <li data-fr="Intégration de Power BI Embedded au sein d'applications ReactJS pour un accès direct aux données" data-en="Integrated Power BI Embedded into ReactJS applications for direct data access">Intégration de Power BI Embedded au sein d'applications ReactJS pour un accès direct aux données</li>
+              <li data-fr="Automatisation des mises à jour de données SQL et Excel, réduisant les tâches manuelles de reporting" data-en="Automated SQL and Excel data updates, reducing manual reporting tasks">Automatisation des mises à jour de données SQL et Excel, réduisant les tâches manuelles de reporting</li>
+              <li data-fr="Fiabilisation des processus de décision métier via des indicateurs à jour et centralisés" data-en="Improved business decision reliability through up-to-date, centralized indicators">Fiabilisation des processus de décision métier via des indicateurs à jour et centralisés</li>
+            </ul>
+            <div class="tags"><span class="tag">Power BI</span><span class="tag">Python</span><span class="tag">ReactJS</span><span class="tag">SQL</span><span class="tag">Excel</span></div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date" data-fr="JUIN 2024<br>— SEPT 2024" data-en="JUN 2024<br>— SEP 2024">JUIN 2024<br>— SEPT 2024</div>
+          <div>
+            <div class="tl-role" data-fr="Analyste de données — stage" data-en="Data Analyst — Internship">Analyste de données — stage</div>
+            <div class="tl-org">ONRTECH France</div>
+            <ul>
+              <li data-fr="Déploiement de pipelines automatisés de web scraping avec Selenium et BeautifulSoup" data-en="Deployed automated web scraping pipelines with Selenium and BeautifulSoup">Déploiement de pipelines automatisés de web scraping avec Selenium et BeautifulSoup</li>
+              <li data-fr="Extraction et traitement de données produits à grande échelle depuis REWE — plus de 100 000 enregistrements collectés" data-en="Extracted and processed large-scale product data from REWE — 100,000+ records collected">Extraction et traitement de données produits à grande échelle depuis REWE — plus de 100 000 enregistrements collectés</li>
+              <li data-fr="Structuration et nettoyage des données pour fiabiliser l'analyse et l'automatisation en aval" data-en="Structured and cleaned data to ensure reliable downstream analysis and automation">Structuration et nettoyage des données pour fiabiliser l'analyse et l'automatisation en aval</li>
+              <li data-fr="Planification de processus réguliers de collecte, garantissant la fraîcheur du jeu de données" data-en="Scheduled regular collection processes, ensuring dataset freshness">Planification de processus réguliers de collecte, garantissant la fraîcheur du jeu de données</li>
+            </ul>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Selenium</span><span class="tag">BeautifulSoup</span><span class="tag">Pandas</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projets">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow"><span class="dot"></span> <span data-fr="portfolio technique" data-en="technical portfolio">portfolio technique</span></div><h2 class="title" data-fr="Projets" data-en="Projects">Projets</h2></div>
+        <span class="section-tag" data-fr="7 projets — académiques & personnels" data-en="7 projects — academic & personal">7 projets — académiques & personnels</span>
+      </div>
+      <div class="proj-grid" id="projGrid"></div>
+    </div>
+  </section>
+
+  <section id="competences">
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow"><span class="dot"></span> stack</div><h2 class="title" data-fr="Compétences" data-en="Skills">Compétences</h2></div>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="sk-header">
+            <div class="sk-head" data-fr="Langages & outils" data-en="Languages & Tools">Langages & outils</div>
+            <span class="sk-count">9 items</span>
+          </div>
+          <div class="sk-progress-track"><div class="sk-progress-fill"></div></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span><span class="tag">PL/SQL</span><span class="tag">MERN Stack</span><span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Qdrant</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="sk-header">
+            <div class="sk-head" data-fr="Frameworks ML / DL" data-en="ML / DL Frameworks">Frameworks ML / DL</div>
+            <span class="sk-count">5 items</span>
+          </div>
+          <div class="sk-progress-track"><div class="sk-progress-fill"></div></div>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">scikit-learn</span><span class="tag">OpenCV</span><span class="tag">Keras</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="sk-header">
+            <div class="sk-head" data-fr="Spécialisations IA" data-en="AI Specializations">Spécialisations IA</div>
+            <span class="sk-count">7 items</span>
+          </div>
+          <div class="sk-progress-track"><div class="sk-progress-fill"></div></div>
+          <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Deep Learning</span><span class="tag">NLP</span><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Reinforcement Learning</span><span class="tag">Agentic AI</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="sk-header">
+            <div class="sk-head">MLOps & Data</div>
+            <span class="sk-count">7 items</span>
+          </div>
+          <div class="sk-progress-track"><div class="sk-progress-fill"></div></div>
+          <div class="tags"><span class="tag">MLflow</span><span class="tag">DVC</span><span class="tag">ZenML</span><span class="tag">CI/CD</span><span class="tag">Kubernetes</span><span class="tag">Spark</span><span class="tag">Power BI</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="sk-header">
+            <div class="sk-head">Cloud</div>
+            <span class="sk-count">Azure</span>
+          </div>
+          <div class="sk-progress-track"><div class="sk-progress-fill"></div></div>
+          <div class="tags"><span class="tag">Azure</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION CERTIFICATIONS MODERNISÉE SANS EMOJI ========== -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div><div class="eyebrow"><span class="dot"></span> <span data-fr="dossier" data-en="credentials">dossier</span></div><h2 class="title" data-fr="Formation, certifications & langues" data-en="Education, Certifications & Languages">Formation, certifications & langues</h2></div>
+      </div>
+      <div class="grid3">
+        <div class="panel cert-panel">
+          <h4>Certifications <span style="font-weight:400; text-transform:none; letter-spacing:0; color:var(--text-faint);">— 10</span></h4>
+          <div class="cert-grid">
+            <div class="cert-card cc-cisco">
+              <div class="cert-info">
+                <div class="c-name" data-fr="CCNA1 — Réseaux" data-en="CCNA1 — Networking">CCNA1 — Réseaux</div>
+                <div class="c-issuer">Cisco</div>
+              </div>
+            </div>
+            <div class="cert-card cc-cisco">
+              <div class="cert-info">
+                <div class="c-name" data-fr="CCNA2 — Réseaux" data-en="CCNA2 — Networking">CCNA2 — Réseaux</div>
+                <div class="c-issuer">Cisco</div>
+              </div>
+            </div>
+            <div class="cert-card cc-certiport">
+              <div class="cert-info">
+                <div class="c-name">Python</div>
+                <div class="c-issuer">Certiport</div>
+              </div>
+            </div>
+            <div class="cert-card cc-certiport">
+              <div class="cert-info">
+                <div class="c-name" data-fr="Analyste de données" data-en="Data Analyst">Analyste de données</div>
+                <div class="c-issuer">Certiport</div>
+              </div>
+            </div>
+            <div class="cert-card cc-ibm">
+              <div class="cert-info">
+                <div class="c-name">Machine Learning</div>
+                <div class="c-issuer">IBM Badge</div>
+              </div>
+            </div>
+            <div class="cert-card cc-nvidia">
+              <div class="cert-info">
+                <div class="c-name">Deep Learning</div>
+                <div class="c-issuer">NVIDIA</div>
+              </div>
+            </div>
+            <div class="cert-card cc-datacamp">
+              <div class="cert-info">
+                <div class="c-name" data-fr="Langage R" data-en="R Language">Langage R</div>
+                <div class="c-issuer">DataCamp</div>
+              </div>
+            </div>
+            <div class="cert-card cc-datacamp">
+              <div class="cert-info">
+                <div class="c-name" data-fr="Ingénieur IA pour Data Scientists" data-en="AI Engineer for Data Scientists">Ingénieur IA pour Data Scientists</div>
+                <div class="c-issuer">DataCamp</div>
+              </div>
+            </div>
+            <div class="cert-card cc-datacamp">
+              <div class="cert-info">
+                <div class="c-name">Agentic AI</div>
+                <div class="c-issuer">DataCamp</div>
+              </div>
+            </div>
+            <div class="cert-card cc-lang">
+              <div class="cert-info">
+                <div class="c-name" data-fr="DELF B2 — Français" data-en="DELF B2 — French">DELF B2 — Français</div>
+                <div class="c-issuer">French Ministry</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h4 data-fr="Formation" data-en="Education">Formation</h4>
+          <div class="edu-item">
+            <div class="e-deg" data-fr="Diplôme d'ingénieur en informatique — spécialisation Data Science" data-en="Engineering Degree in Computer Science — Data Science specialization">Diplôme d'ingénieur en informatique — spécialisation Data Science</div>
+            <div class="e-org">Polytechnique Sousse</div>
+            <div class="e-date">2023 — 2026</div>
+          </div>
+          <div class="edu-item">
+            <div class="e-deg" data-fr="Cycle préparatoire, filière P.C" data-en="Preparatory cycle, Physics-Chemistry track">Cycle préparatoire, filière P.C</div>
+            <div class="e-org">Institut Préparatoire aux Études d'Ingénieur de Kairouan</div>
+            <div class="e-date">2021 — 2023</div>
+          </div>
+        </div>
+        <div class="panel">
+          <h4 data-fr="Langues" data-en="Languages">Langues</h4>
+          <div class="lang-row"><span data-fr="Français" data-en="French">Français</span><div class="lang-bar"><i style="width:78%"></i></div></div>
+          <div class="lang-row"><span data-fr="Anglais" data-en="English">Anglais</span><div class="lang-bar"><i style="width:78%"></i></div></div>
+          <div class="lang-row"><span data-fr="Arabe" data-en="Arabic">Arabe</span><div class="lang-bar"><i style="width:100%"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-band">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> <span data-fr="prochaine étape" data-en="next step">prochaine étape</span></div>
+          <h2 data-fr="Discutons de votre prochain projet IA." data-en="Let's talk about your next AI project.">Discutons de votre prochain projet IA.</h2>
+          <p data-fr="Réponse rapide, disponibilité immédiate. Le moyen le plus rapide de me joindre : WhatsApp ou email direct." data-en="Fast response, immediate availability. The quickest way to reach me: WhatsApp or direct email.">Réponse rapide, disponibilité immédiate. Le moyen le plus rapide de me joindre : WhatsApp ou email direct.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-outline" id="mailBtn2" href="#">✉ benfadhelzaineb1@gmail.com</a>
+          <a class="btn btn-primary" id="waBtn2" href="#" target="_blank" rel="noopener">↗ WhatsApp +216 99 576 809</a>
+          <a class="btn" id="cvBtn2" href="Zaineb_Ben_Fadhl_CV.pdf" download data-fr="↓ Télécharger le CV (PDF)" data-en="↓ Download Resume (PDF)">↓ Télécharger le CV (PDF)</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/zaineb-ben-fadhl-619438308/" target="_blank" rel="noopener" data-fr="↗ Profil LinkedIn" data-en="↗ LinkedIn Profile">↗ Profil LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-fr="zaineb_benfadhl — Tunis, Tunisie — v2026.2" data-en="zaineb_benfadhl — Tunis, Tunisia — v2026.2">zaineb_benfadhl — Tunis, Tunisie — v2026.2</footer>
+
+<button class="ai-fab" id="aiFab"><span class="dot2"></span> <span data-fr="Demander à l'assistant IA" data-en="Ask the AI assistant">Demander à l'assistant IA</span></button>
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-head">
+    <div class="ai-head-id">
+      <div class="ai-avatar">🤖</div>
+      <div>
+        <div class="t">Assistant — Zaineb Ben Fadhl</div>
+        <div class="sub"><span style="width:6px;height:6px;border-radius:50%;background:var(--cyan);display:inline-block;box-shadow:0 0 6px var(--cyan);"></span><span data-fr="En ligne · réponses fondées sur son profil" data-en="Online · answers grounded in her profile">En ligne · réponses fondées sur son profil</span></div>
+      </div>
+    </div>
+    <button class="ai-send" style="background:transparent;color:var(--text-dim);font-size:16px;padding:0 6px;box-shadow:none;" id="aiClose" aria-label="Fermer">✕</button>
+  </div>
+  <div class="ai-body" id="aiBody">
+    <div class="msg-row">
+      <div class="msg-avatar">🤖</div>
+      <div class="msg-col">
+        <div class="msg bot" id="aiFirstMsg" data-fr="Bonjour, je suis l'assistant virtuel de Zaineb Ben Fadhl 👋<br><br>Je peux répondre à vos questions concernant son <strong>parcours</strong>, ses <strong>projets</strong>, ses <strong>compétences techniques</strong> ou sa <strong>disponibilité</strong>. N'hésitez pas à me solliciter, je vous réponds en quelques secondes." data-en="Hello, I'm Zaineb Ben Fadhl's virtual assistant 👋<br><br>I can answer your questions about her <strong>background</strong>, <strong>projects</strong>, <strong>technical skills</strong>, or <strong>availability</strong>. Feel free to ask, I'll reply within seconds.">Bonjour, je suis l'assistant virtuel de Zaineb Ben Fadhl 👋<br><br>Je peux répondre à vos questions concernant son <strong>parcours</strong>, ses <strong>projets</strong>, ses <strong>compétences techniques</strong> ou sa <strong>disponibilité</strong>. N'hésitez pas à me solliciter, je vous réponds en quelques secondes.</div>
+      </div>
+    </div>
+  </div>
+  <div class="ai-suggest" id="aiSuggest">
+    <button data-q-fr="Quels projets en RAG ou LLM a-t-elle réalisés ?" data-q-en="What RAG or LLM projects has she worked on?" data-fr="Projets RAG / LLM" data-en="RAG / LLM projects">Projets RAG / LLM</button>
+    <button data-q-fr="Est-elle disponible immédiatement ?" data-q-en="Is she available immediately?" data-fr="Disponibilité" data-en="Availability">Disponibilité</button>
+    <button data-q-fr="Pourquoi devrions-nous la recruter ?" data-q-en="Why should we hire her?" data-fr="Pourquoi la recruter ?" data-en="Why hire her?">Pourquoi la recruter ?</button>
+  </div>
+  <div class="ai-input-row">
+    <input type="text" id="aiInput" data-fr-ph="Écrivez votre question..." data-en-ph="Type your question..." placeholder="Écrivez votre question...">
+    <button class="ai-send" id="aiSend" aria-label="Envoyer">➤</button>
+  </div>
+</div>
+
+<script>
+const PHONE = "21699576809";
+const EMAIL = "benfadhelzaineb1@gmail.com";
+let currentLang = 'fr';
+
+function mailtoLink(subject, body){ return "mailto:"+EMAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body); }
+function waLink(text){ return "https://wa.me/"+PHONE+"?text="+encodeURIComponent(text); }
+
+const MAIL_TXT = {
+  fr:{ subject:"Opportunité — Poste Ingénieure IA / Data Scientist", body:"Bonjour Zaineb,\n\nJ'ai consulté votre portfolio et j'aimerais échanger sur une opportunité.\n\nCordialement," },
+  en:{ subject:"Opportunity — AI Engineer / Data Scientist Position", body:"Hello Zaineb,\n\nI came across your portfolio and would love to discuss an opportunity.\n\nBest regards," }
+};
+const WA_TXT = {
+  fr:"Bonjour Zaineb, j'ai vu votre portfolio et j'aimerais échanger sur une opportunité.",
+  en:"Hello Zaineb, I saw your portfolio and would love to discuss an opportunity."
+};
+function refreshContactLinks(){
+  const m = MAIL_TXT[currentLang], w = WA_TXT[currentLang];
+  document.querySelectorAll('#mailBtn,#mailBtn2').forEach(el=>el.href = mailtoLink(m.subject, m.body));
+  document.querySelectorAll('#waBtn,#waBtn2').forEach(el=>el.href = waLink(w));
+}
+refreshContactLinks();
+
+// ---------- projects (bilingual) — 7 projets désormais ----------
+const projects = [
+  { id:'mlops', win:false,
+    badge:{fr:'Académique', en:'Academic'},
+    title:{fr:'Pipeline MLOps reproductible & déployable', en:'Reproducible & Deployable MLOps Pipeline'},
+    bullets:{
+      fr:['Workflow MLOps complet couvrant versioning, orchestration et déploiement : Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna',
+          'Conteneurisation et orchestration des services via Docker et Kubernetes pour un pipeline reproductible de bout en bout',
+          "API d'inférence exposée via Docker Compose, déployée sur cluster Kubernetes avec CI/CD et rollback automatique en cas de dérive détectée (Prometheus)"],
+      en:['End-to-end MLOps workflow covering versioning, orchestration and deployment: Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna',
+          'Containerized and orchestrated services with Docker and Kubernetes for a fully reproducible pipeline',
+          'Inference API exposed via Docker Compose, deployed on a Kubernetes cluster with CI/CD and automatic rollback on detected drift (Prometheus)']
+    },
+    tags:['Git','Docker','Kubernetes','DVC','MLflow','ZenML','Optuna','CI/CD','Prometheus','Grafana'] },
+  { id:'cosmetic', win:false,
+    badge:{fr:'Personnel', en:'Personal'},
+    title:{fr:'Reconnaissance faciale pour recommandations cosmétiques', en:'Facial Recognition for Cosmetic Recommendations'},
+    bullets:{
+      fr:['Système de reconnaissance faciale détectant les traits du visage par computer vision',
+          "Génération de recommandations de produits cosmétiques personnalisées selon la morphologie de l'utilisateur"],
+      en:['Facial recognition system detecting facial features via computer vision',
+          "Generated personalized cosmetic product recommendations based on the user's facial morphology"]
+    },
+    tags:['Python','OpenCV','Computer Vision','Deep Learning'] },
+  { id:'mentalhealth', win:false,
+    badge:{fr:'Académique', en:'Academic'},
+    title:{fr:'Suivi de santé mentale en entreprise par IA agentique', en:'AI-Agent-Based Workplace Mental Health Monitoring'},
+    bullets:{
+      fr:['Analyse NLP de journaux de bord et retours des collaborateurs pour détecter stress, frustration et burnout',
+          'Agent intelligent délivrant des recommandations personnalisées via un chatbot empathique',
+          "Pipeline MLOps complet (entraînement, versioning, API d'inférence, monitoring) déployé sur le cloud Azure"],
+      en:['NLP analysis of logs and employee feedback to detect stress, frustration and burnout',
+          'Intelligent agent delivering personalized recommendations via an empathetic chatbot',
+          'Full MLOps pipeline (training, versioning, inference API, monitoring) deployed on Azure cloud']
+    },
+    tags:['Python','NLP','Agentic AI','MLOps','Azure'] },
+  { id:'sport', win:true,
+    badge:{fr:'🏆 TechX 2025 — 3e place', en:'🏆 TechX 2025 — 3rd place'},
+    title:{fr:'Plateforme de prédiction des blessures sportives', en:'Sports Injury Prediction Platform'},
+    bullets:{
+      fr:['Modèles ML (régression logistique, arbre de décision) atteignant 85% de précision',
+          'Frontend React et backend API pour le suivi temporel des risques',
+          'Recommandations de récupération personnalisées et comparaison visuelle des données athlète'],
+      en:['ML models (logistic regression, decision tree) achieving 85% accuracy',
+          'React frontend and API backend for tracking risk over time',
+          "Personalized recovery recommendations and visual comparison of athlete data"]
+    },
+    tags:['Python','scikit-learn','React','REST API'] },
+  { id:'microservices', win:false,
+    badge:{fr:'Académique', en:'Academic'},
+    title:{fr:'Application basée sur une architecture microservices', en:'Microservices-Based Application'},
+    bullets:{
+      fr:['Architecture microservices (REST, gRPC) avec API Gateway (GraphQL, Kafka)',
+          "Intégration du modèle de langage LLaMA pour la génération de contenu et l'analyse de texte",
+          "Documentation complète de l'architecture et des schémas de données pour faciliter la maintenance"],
+      en:['Microservices architecture (REST, gRPC) with API Gateway (GraphQL, Kafka)',
+          'Integrated the LLaMA language model for content generation and text analysis',
+          'Complete architecture and data-schema documentation to ease maintenance']
+    },
+    tags:['REST','gRPC','GraphQL','Kafka','LLaMA','GitHub'] },
+  { id:'rag', win:false,
+    badge:{fr:'Personnel', en:'Personal'},
+    title:{fr:'Système RAG adaptatif multi-bases de connaissances', en:'Adaptive Multi-Knowledge-Base RAG System'},
+    bullets:{
+      fr:["Architecture RAG s'adaptant dynamiquement à une nouvelle base de connaissances à chaque utilisation",
+          'LLM Mistral intégré pour générer des réponses contextualisées à partir des documents récupérés',
+          'Indexation et recherche sémantique vectorielle via Qdrant pour une récupération rapide et pertinente'],
+      en:['RAG architecture dynamically adapting to a new knowledge base on each use',
+          'Integrated Mistral LLM to generate context-aware answers from retrieved documents',
+          'Vector-based semantic indexing and search via Qdrant for fast, relevant retrieval']
+    },
+    tags:['Python','Mistral','Qdrant','RAG','NLP'] },
+  // ---------- NOUVEAU PROJET AJOUTÉ ----------
+  { id:'nephritic', win:false,
+    badge:{fr:'Académique', en:'Academic'},
+    title:{fr:'Analyse et Prédiction de la Douleur liée à la Colique Néphritique (PFA 2)', en:'Analysis and Prediction of Nephritic Colic Pain — PFA 2'},
+    bullets:{
+      fr:[
+        "Réalisation d'un pipeline d'analyse de données médicales pour prédire l'efficacité des traitements antalgiques",
+        "Prétraitement des données cliniques (nettoyage, normalisation des variables et échelles de douleur)",
+        "Visualisation des tendances temporelles de la douleur (matplotlib, seaborn)",
+        "Développement et évaluation de modèles de machine learning (Logistic Regression, Random Forest, SVM, réseaux de neurones)",
+        "Rédaction d'un article scientifique sur les résultats et implications cliniques (publication en cours)"
+      ],
+      en:[
+        "Built a medical data analysis pipeline to predict the effectiveness of pain relief treatments",
+        "Preprocessed clinical data (cleaning, normalization of variables and pain scales)",
+        "Visualized temporal pain trends (matplotlib, seaborn)",
+        "Developed and evaluated machine learning models (Logistic Regression, Random Forest, SVM, neural networks)",
+        "Wrote a scientific article on the results and clinical implications (publication in progress)"
+      ]
+    },
+    tags:['Python','scikit-learn','Pandas','matplotlib','seaborn','Logistic Regression','Random Forest','SVM','Neural Networks']
+  }
+];
+
+const projGrid = document.getElementById('projGrid');
+function renderProjects(){
+  projGrid.innerHTML = '';
+  projects.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-bar"><span>${p.id}.project</span><span class="badge ${p.win?'win':''}">${p.badge[currentLang]}</span></div>
+      <div class="card-body"><h3>${p.title[currentLang]}</h3><ul>${p.bullets[currentLang].map(b=>`<li>${b}</li>`).join('')}</ul></div>
+      <div class="proj-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    `;
+    card.addEventListener('mousemove', e=>{
+      const r=card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+      card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+    });
+    projGrid.appendChild(card);
+  });
+}
+renderProjects();
+
+// ---------- AI assistant (RAG-style knowledge assistant) ----------
+const aiFab = document.getElementById('aiFab');
+const aiPanel = document.getElementById('aiPanel');
+const aiClose = document.getElementById('aiClose');
+const aiBody = document.getElementById('aiBody');
+const aiInput = document.getElementById('aiInput');
+const aiSend = document.getElementById('aiSend');
+const aiSuggest = document.getElementById('aiSuggest');
+
+aiFab.addEventListener('click', ()=>{ aiPanel.classList.add('open'); aiFab.style.display='none'; aiInput.focus(); });
+aiClose.addEventListener('click', ()=>{ aiPanel.classList.remove('open'); aiFab.style.display='flex'; });
+
+const FR_STOP = new Set(['ai','a','est','suis','es','sont','sommes','êtes','être','le','la','les','lui','leur','eux','elle','elles','il','ils','on','nous','vous','ce','cet','cette','ces','son','sa','ses','mon','ma','mes','ton','ta','tes','notre','nos','votre','vos','un','une','des','du','de','d\'','d','l\'','l','et','ou','mais','donc','car','ni','or','dans','sur','sous','pour','par','avec','sans','chez','vers','entre','depuis','pendant','avant','après','qui','que','quoi','dont','où','comment','quand','quel','quelle','quels','quelles','ne','pas','plus','jamais','rien','très','assez','peu','trop','si','tant','beaucoup','aussi','au','aux','fait','faire','peut','peux','veux','veut','sais','sait','dois','doit','bien','tous','toute','toutes','toujours','alors','puis','ensuite','enfin','voilà','voici','combien']);
+const EN_STOP = new Set(['a','an','the','is','are','was','were','be','been','being','i','you','he','she','it','we','they','me','him','her','us','them','my','your','his','its','our','their','and','or','but','so','because','nor','in','on','under','for','by','with','without','at','to','from','before','after','who','what','which','whose','where','how','when','why','not','no','never','nothing','very','quite','little','too','if','so much','also','can','could','want','wants','know','knows','must','well','all','always','then','next','finally','how many','how much','does','do','did','has','have','had']);
+const STOP = new Set([...FR_STOP, ...EN_STOP]);
+
+const PROFILE = [
+  { id:'synthese', terms:['profil','synthèse','présentation','qui est',"c'est quoi",'parcours','ingénieure','ingénieur','data scientist','présente','résumé','à propos','profile','summary','who is','background','engineer'],
+    fr:{ html:"<p>Zaineb Ben Fadhl est <strong>ingénieure diplômée en Intelligence Artificielle et Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Spécialisée en <strong>NLP, LLM et architectures RAG</strong>, ainsi qu'en <strong>Computer Vision, Deep Learning et MLOps</strong></li><li>Expérience confirmée du déploiement conteneurisé (<strong>Docker, Kubernetes</strong>) et cloud (<strong>Azure</strong>)</li><li>3 stages, 7 projets déployés, 3ᵉ place au concours TechX 2025</li></ul>", src:"profil.md" },
+    en:{ html:"<p>Zaineb Ben Fadhl is an <strong>engineering graduate in Artificial Intelligence and Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Specialized in <strong>NLP, LLM and RAG architectures</strong>, as well as <strong>Computer Vision, Deep Learning and MLOps</strong></li><li>Proven experience with containerized (<strong>Docker, Kubernetes</strong>) and cloud (<strong>Azure</strong>) deployment</li><li>3 internships, 7 deployed projects, 3rd place at the TechX 2025 competition</li></ul>", src:"profile.md" },
+    followups:{ fr:['Pourquoi la recruter ?','Disponibilité'], en:['Why hire her?','Availability'] } },
+
+  { id:'dispo', terms:['disponible','disponibilité','immédiatement','dispo','urgence','rapidement','commencer','quand','préavis','délai','libre','available','availability','immediately','start','notice'],
+    fr:{ html:"<p>Zaineb est <strong>disponible immédiatement</strong>. Diplômée en 2026, elle peut débuter une mission sans délai ni période de préavis à respecter.</p>", src:"profil.md" },
+    en:{ html:"<p>Zaineb is <strong>available immediately</strong>. Graduating in 2026, she can start right away, with no notice period to observe.</p>", src:"profile.md" },
+    followups:{ fr:['Comment la contacter ?','Pourquoi la recruter ?'], en:['How to contact her?','Why hire her?'] } },
+
+  { id:'contact', terms:['contact','email','mail','whatsapp','téléphone','tel','appeler','joindre','linkedin','message','contacter','numéro','phone','reach','call','number'],
+    fr:{ html:"<p>Voici les moyens les plus rapides pour joindre Zaineb :</p><ul><li>📧 Email : <strong>benfadhelzaineb1@gmail.com</strong></li><li>💬 WhatsApp : <strong>+216 99 576 809</strong></li><li>🔗 LinkedIn : linkedin.com/in/zaineb-ben-fadhl</li></ul>", src:"contact" },
+    en:{ html:"<p>Here are the quickest ways to reach Zaineb:</p><ul><li>📧 Email: <strong>benfadhelzaineb1@gmail.com</strong></li><li>💬 WhatsApp: <strong>+216 99 576 809</strong></li><li>🔗 LinkedIn: linkedin.com/in/zaineb-ben-fadhl</li></ul>", src:"contact" },
+    followups:{ fr:['Disponibilité'], en:['Availability'] } },
+
+  { id:'pourquoi', terms:['pourquoi','recruter','embaucher','atouts','forces','qualites','qualités','valeur','différence','unique','choisir','avantage','why','hire','strengths','value','choose'],
+    fr:{ html:"<p>Plusieurs raisons plaident en faveur du recrutement de Zaineb :</p><ul><li><strong>Expertise de bout en bout</strong> — de l'analyse du besoin métier jusqu'à la mise en production</li><li>Maîtrise transverse : <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Déploiement conteneurisé (Docker/Kubernetes) et cloud (Azure) déjà éprouvé en entreprise</li><li>3 stages, dont un stage de fin d'études en France, et une 3ᵉ place au concours TechX 2025</li><li><strong>Disponibilité immédiate</strong></li></ul>", src:"profil.md · expérience" },
+    en:{ html:"<p>Several reasons make a strong case for hiring Zaineb:</p><ul><li><strong>End-to-end expertise</strong> — from business-need analysis through to production</li><li>Cross-cutting skills: <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Proven containerized (Docker/Kubernetes) and cloud (Azure) deployment experience in industry</li><li>3 internships, including a final-year one in France, and 3rd place at TechX 2025</li><li><strong>Immediate availability</strong></li></ul>", src:"profile.md · experience" },
+    followups:{ fr:['Comment la contacter ?','Voir ses projets'], en:['How to contact her?','See her projects'] } },
+
+  { id:'langues', terms:['langue','langues','français','anglais','arabe','parle','delf','b2','niveau','language','languages','french','english','arabic','speak','level'],
+    fr:{ html:"<p>Zaineb évolue confortablement dans un environnement multilingue :</p><ul><li>Français — niveau B2 (certifié DELF)</li><li>Anglais — niveau B2</li><li>Arabe — langue maternelle</li></ul>", src:"formation & langues" },
+    en:{ html:"<p>Zaineb is comfortable working in a multilingual environment:</p><ul><li>French — B2 level (DELF certified)</li><li>English — B2 level</li><li>Arabic — native language</li></ul>", src:"education & languages" },
+    followups:{ fr:['Sa formation'], en:['Her education'] } },
+
+  { id:'experiences', terms:['expérience','expériences','stage','stages','travail','carrière','professionnel','combien de stages','experience','internship','internships','career','how many internships'],
+    fr:{ html:"<p>Zaineb a effectué <strong>3 stages</strong>, avec une montée en responsabilité progressive :</p><ul><li><strong>Ingénieure IA</strong> — Anavid France (janv.–mai 2026)</li><li><strong>Développeuse BI</strong> — LEONI Sousse (juin–juil. 2025)</li><li><strong>Analyste de données</strong> — ONRTECH France (juin–sept. 2024)</li></ul>", src:"expérience professionnelle" },
+    en:{ html:"<p>Zaineb has completed <strong>3 internships</strong>, with progressively increasing responsibility:</p><ul><li><strong>AI Engineer</strong> — Anavid France (Jan–May 2026)</li><li><strong>BI Developer</strong> — LEONI Sousse (Jun–Jul 2025)</li><li><strong>Data Analyst</strong> — ONRTECH France (Jun–Sep 2024)</li></ul>", src:"professional experience" },
+    followups:{ fr:['Détails du stage Anavid','Détails du stage LEONI'], en:['Anavid internship details','LEONI internship details'] } },
+
+  { id:'anavid', terms:['anavid','pfe','fin d\'études','stage anavid','détection d\'actions','vol','vidéo','reinforcement learning','apprentissage par renforcement','active learning','meta-learning','prometheus','ci/cd anavid','final year','theft','video','action detection'],
+    fr:{ html:"<p>Lors de son <strong>stage de fin d'études</strong> chez Anavid France, Zaineb a :</p><ul><li>Conçu et entraîné un système de détection d'actions par deep learning, spécialisé dans la détection de vols sur flux vidéo de surveillance</li><li>Déployé un mécanisme d'amélioration continue par <strong>Reinforcement Learning</strong>, intégrant les retours terrain en temps réel</li><li>Optimisé l'efficacité d'apprentissage via l'<strong>Active Learning</strong> et accéléré l'adaptation à de nouvelles actions via le <strong>Meta-Learning</strong></li><li>Construit des pipelines CI/CD avec suivi de dérive (Prometheus) et rollback automatique</li></ul><p>Stack technique : Python, PyTorch, OpenCV.</p>", src:"expérience — Anavid France" },
+    en:{ html:"<p>During her <strong>final-year internship</strong> at Anavid France, Zaineb:</p><ul><li>Designed and trained a deep learning action-detection system specialized in theft detection on surveillance video streams</li><li>Deployed a continuous-improvement mechanism using <strong>Reinforcement Learning</strong>, integrating real-time field feedback</li><li>Improved learning efficiency via <strong>Active Learning</strong> and accelerated adaptation to new actions via <strong>Meta-Learning</strong></li><li>Built CI/CD pipelines with drift monitoring (Prometheus) and automatic rollback</li></ul><p>Tech stack: Python, PyTorch, OpenCV.</p>", src:"experience — Anavid France" },
+    followups:{ fr:['Ses compétences MLOps'], en:['Her MLOps skills'] } },
+
+  { id:'leoni', terms:['leoni','power bi','business intelligence','dashboard','tableau de bord','react','stage leoni'],
+    fr:{ html:"<p>Chez <strong>LEONI Sousse</strong>, Zaineb a :</p><ul><li>Conçu des tableaux de bord Power BI interactifs pour le suivi RH et production, utilisés au quotidien par plus de 50 employés</li><li>Intégré Power BI Embedded au sein d'applications ReactJS</li><li>Automatisé les mises à jour de données SQL et Excel, réduisant les tâches manuelles de reporting</li></ul>", src:"expérience — LEONI Sousse" },
+    en:{ html:"<p>At <strong>LEONI Sousse</strong>, Zaineb:</p><ul><li>Designed interactive Power BI dashboards for HR and production tracking, used daily by 50+ employees</li><li>Integrated Power BI Embedded into ReactJS applications</li><li>Automated SQL and Excel data updates, reducing manual reporting tasks</li></ul>", src:"experience — LEONI Sousse" },
+    followups:{ fr:['Ses autres stages'], en:['Her other internships'] } },
+
+  { id:'onrtech', terms:['onrtech','scraping','selenium','beautifulsoup','rewe','collecte','collection'],
+    fr:{ html:"<p>Chez <strong>ONRTECH France</strong>, Zaineb a construit des pipelines automatisés de web scraping (Selenium, BeautifulSoup), collectant plus de <strong>100 000 enregistrements produits</strong> depuis REWE, avec nettoyage des données et planification de la collecte pour en garantir la fraîcheur.</p>", src:"expérience — ONRTECH France" },
+    en:{ html:"<p>At <strong>ONRTECH France</strong>, Zaineb built automated web scraping pipelines (Selenium, BeautifulSoup), collecting over <strong>100,000 product records</strong> from REWE, with data cleaning and scheduled collection to keep the dataset fresh.</p>", src:"experience — ONRTECH France" },
+    followups:{ fr:['Ses autres stages'], en:['Her other internships'] } },
+
+  { id:'formation', terms:['formation','diplôme','école','université','polytechnique','étude','études','cycle','prépa','education','degree','school','university','studies'],
+    fr:{ html:"<ul><li><strong>Diplôme d'ingénieur en informatique</strong>, spécialisation Data Science — Polytechnique Sousse (2023–2026)</li><li>Cycle préparatoire, filière Physique-Chimie — IPEI Kairouan (2021–2023)</li></ul>", src:"formation" },
+    en:{ html:"<ul><li><strong>Engineering degree in Computer Science</strong>, Data Science specialization — Polytechnique Sousse (2023–2026)</li><li>Preparatory cycle, Physics-Chemistry track — IPEI Kairouan (2021–2023)</li></ul>", src:"education" },
+    followups:{ fr:['Ses certifications'], en:['Her certifications'] } },
+
+  { id:'competences', terms:['compétence','compétences','langage','stack','outil','framework','technologie','connaissance','skill','skills','tools','technology'],
+    fr:{ html:"<p>Sa boîte à outils technique couvre l'ensemble de la chaîne IA :</p><ul><li><strong>Langages & outils</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>Spécialisations IA</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud</strong> — Azure</li></ul>", src:"compétences" },
+    en:{ html:"<p>Her technical toolkit spans the full AI chain:</p><ul><li><strong>Languages & tools</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>AI specializations</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud</strong> — Azure</li></ul>", src:"skills" },
+    followups:{ fr:['Voir ses projets','Ses certifications'], en:['See her projects','Her certifications'] } },
+
+  { id:'kubernetes_azure', terms:['kubernetes','docker','conteneur','conteneurisation','azure','cloud','déploiement','production','container','deployment'],
+    fr:{ html:"<p>Zaineb maîtrise le déploiement conteneurisé avec <strong>Docker</strong> et <strong>Kubernetes</strong> (orchestration de clusters, pipelines CI/CD, rollback automatique), ainsi que le cloud <strong>Azure</strong> pour héberger des pipelines MLOps de bout en bout.</p>", src:"compétences · MLOps" },
+    en:{ html:"<p>Zaineb is proficient in containerized deployment with <strong>Docker</strong> and <strong>Kubernetes</strong> (cluster orchestration, CI/CD pipelines, automatic rollback), as well as <strong>Azure</strong> cloud for hosting end-to-end MLOps pipelines.</p>", src:"skills · MLOps" },
+    followups:{ fr:['Détails du stage Anavid'], en:['Anavid internship details'] } },
+
+  { id:'projets', terms:['projet','projets','réalisation','portfolio','github','combien de projets','project','projects','how many projects'],
+    fr:{ html:"<p>Le portfolio de Zaineb compte <strong>7 projets académiques et personnels</strong> :</p><ul><li>Pipeline MLOps reproductible (Docker/Kubernetes)</li><li>Reconnaissance faciale pour recommandations cosmétiques</li><li>Suivi de santé mentale en entreprise par IA agentique (Azure)</li><li>Prédiction des blessures sportives — 🏆 3ᵉ place TechX 2025</li><li>Application microservices avec LLaMA</li><li>Système RAG adaptatif multi-bases avec Mistral et Qdrant</li><li>Analyse et prédiction de la douleur néphritique (PFA 2)</li></ul>", src:"projets" },
+    en:{ html:"<p>Zaineb's portfolio includes <strong>7 academic and personal projects</strong>:</p><ul><li>Reproducible MLOps pipeline (Docker/Kubernetes)</li><li>Facial recognition for cosmetic recommendations</li><li>Agentic-AI workplace mental health monitoring (Azure)</li><li>Sports injury prediction — 🏆 3rd place at TechX 2025</li><li>Microservices application with LLaMA</li><li>Adaptive multi-knowledge-base RAG system with Mistral and Qdrant</li><li>Nephritic colic pain analysis and prediction (PFA 2)</li></ul>", src:"projects" },
+    followups:{ fr:['Projets RAG / LLM','Projet primé TechX'], en:['RAG / LLM projects','Award-winning TechX project'] } },
+
+  // Ajout d'une entrée pour le nouveau projet dans l'assistant
+  { id:'projet_nephritic', terms:['néphritique','colique','douleur','médical','antalgique','pfa 2','nephritic','colic','pain','medical'],
+    fr:{ html:"<p><strong>Analyse et Prédiction de la Douleur liée à la Colique Néphritique (PFA 2)</strong></p><ul><li>Pipeline d'analyse de données médicales pour prédire l'efficacité des traitements antalgiques</li><li>Prétraitement des données cliniques (nettoyage, normalisation des variables et échelles de douleur)</li><li>Visualisation des tendances temporelles de la douleur (matplotlib, seaborn)</li><li>Développement et évaluation de modèles de machine learning (Logistic Regression, Random Forest, SVM, réseaux de neurones)</li><li>Rédaction d'un article scientifique (publication en cours)</li></ul>", src:"projet — PFA 2" },
+    en:{ html:"<p><strong>Analysis and Prediction of Nephritic Colic Pain (PFA 2)</strong></p><ul><li>Medical data analysis pipeline to predict the effectiveness of pain relief treatments</li><li>Preprocessing of clinical data (cleaning, normalization of variables and pain scales)</li><li>Visualization of temporal pain trends (matplotlib, seaborn)</li><li>Development and evaluation of machine learning models (Logistic Regression, Random Forest, SVM, neural networks)</li><li>Scientific article writing (publication in progress)</li></ul>", src:"project — PFA 2" },
+    followups:{ fr:['Voir ses projets'], en:['See her projects'] } }
+];
+
+const SMALLTALK = {
+  greeting: { terms:['bonjour','salut','bonsoir','coucou','hey','hello','hi','good morning','good afternoon','good evening'],
+    fr:"Bonjour ! Ravi de vous accueillir. Posez-moi une question sur le parcours, les projets, les compétences ou la disponibilité de Zaineb — je m'appuie directement sur son profil pour vous répondre.",
+    en:"Hello! Glad to have you here. Feel free to ask about Zaineb's background, projects, skills, or availability — I answer directly from her profile." },
+  thanks: { terms:['merci','thanks','thank you','thx','cool merci'],
+    fr:"Avec plaisir ! N'hésitez pas si vous avez d'autres questions, ou contactez directement Zaineb : benfadhelzaineb1@gmail.com.",
+    en:"You're welcome! Feel free to ask anything else, or reach out to Zaineb directly: benfadhelzaineb1@gmail.com." },
+  bye: { terms:['au revoir','bye','à bientôt','goodbye','see you'],
+    fr:"Merci pour votre visite, et à bientôt ! Zaineb sera ravie d'échanger avec vous.",
+    en:"Thank you for stopping by, and see you soon! Zaineb would be glad to connect with you." }
+};
+
+function tokenize(text){
+  return text.toLowerCase().replace(/[^a-z0-9àâçéèêëîïôûùüÿœæ\-]/g,' ').split(/\s+/).filter(t=>t.length>1 && !STOP.has(t));
+}
+
+function matchSmallTalk(question){
+  const q = question.toLowerCase().trim();
+  for(const key of Object.keys(SMALLTALK)){
+    const entry = SMALLTALK[key];
+    if(entry.terms.some(term => q === term || q.startsWith(term+' ') || q.startsWith(term+',') || q.startsWith(term+'!') || (q.length<25 && q.includes(term)))){
+      return entry;
+    }
+  }
+  return null;
+}
+
+function findBestSections(question){
+  const tokens = tokenize(question);
+  if(tokens.length===0) return [];
+  const scored = PROFILE.map(section=>{
+    let score=0;
+    for(const token of tokens){
+      for(const term of section.terms){
+        const t=term.toLowerCase();
+        if(t.includes(token)||token.includes(t)) score+=3;
+        else if(t.split(' ').some(w=>w===token)) score+=2;
+      }
+    }
+    return {section, score};
+  }).filter(s=>s.score>0).sort((a,b)=>b.score-a.score);
+  if(scored.length===0) return [];
+  const threshold = scored[0].score*0.5;
+  return scored.filter(s=>s.score>=threshold).slice(0,2).map(s=>s.section);
+}
+
+const FALLBACK = {
+  fr:"Je n'ai pas trouvé d'information précise à ce sujet dans le profil de Zaineb. N'hésitez pas à reformuler votre question, ou à la contacter directement : <strong>benfadhelzaineb1@gmail.com</strong> / WhatsApp <strong>+216 99 576 809</strong>.",
+  en:"I couldn't find precise information on this in Zaineb's profile. Feel free to rephrase your question, or contact her directly: <strong>benfadhelzaineb1@gmail.com</strong> / WhatsApp <strong>+216 99 576 809</strong>."
+};
+const DEFAULT_FOLLOWUPS = { fr:['Voir ses projets','Ses compétences','Disponibilité'], en:['See her projects','Her skills','Availability'] };
+
+function appendBotMessage(html, srcLabel, followups){
+  const row = document.createElement('div');
+  row.className = 'msg-row';
+  const col = document.createElement('div');
+  col.className = 'msg-col';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'msg bot';
+  bubble.innerHTML = html + (srcLabel ? `<div class="src">📎 ${srcLabel}</div>` : '');
+  col.appendChild(bubble);
+
+  const fu = followups && followups.length ? followups : DEFAULT_FOLLOWUPS[currentLang];
+  if(fu && fu.length){
+    const fuWrap = document.createElement('div');
+    fuWrap.className = 'followups';
+    fu.forEach(label=>{
+      const btn = document.createElement('button');
+      btn.textContent = label;
+      btn.addEventListener('click', ()=>sendUserMessage(label));
+      fuWrap.appendChild(btn);
+    });
+    col.appendChild(fuWrap);
+  }
+
+  row.innerHTML = '<div class="msg-avatar">🤖</div>';
+  row.appendChild(col);
+  aiBody.appendChild(row);
+  aiBody.scrollTop = aiBody.scrollHeight;
+}
+
+function askAI(question){
+  aiSend.disabled = true;
+  const typingRow = document.createElement('div');
+  typingRow.className = 'msg-row';
+  typingRow.innerHTML = '<div class="msg-avatar">🤖</div><div class="msg-col"><div class="msg bot typing"><span></span><span></span><span></span></div></div>';
+  aiBody.appendChild(typingRow);
+  aiBody.scrollTop = aiBody.scrollHeight;
+
+  const smallTalk = matchSmallTalk(question);
+  const sections = smallTalk ? [] : findBestSections(question);
+
+  const delay = smallTalk ? 420 : (sections.length > 1 ? 900 : 650);
+
+  setTimeout(()=>{
+    typingRow.remove();
+    if(smallTalk){
+      appendBotMessage(`<p>${smallTalk[currentLang]}</p>`, null, DEFAULT_FOLLOWUPS[currentLang]);
+    } else if(sections.length){
+      const html = sections.map(s=>s[currentLang].html).join('<hr style="border:none;border-top:1px solid var(--border);margin:10px 0;">');
+      const srcs = sections.map(s=>s[currentLang].src).join(' · ');
+      const followups = sections[0].followups ? sections[0].followups[currentLang] : null;
+      appendBotMessage(html, srcs, followups);
+    } else {
+      appendBotMessage(`<p>${FALLBACK[currentLang]}</p>`, null, DEFAULT_FOLLOWUPS[currentLang]);
+    }
+    aiSend.disabled = false;
+    aiInput.focus();
+  }, delay);
+}
+
+function sendUserMessage(text){
+  if(!text || !text.trim()) return;
+  const row = document.createElement('div');
+  row.className = 'msg-row user-row';
+  row.innerHTML = `<div class="msg-col"><div class="msg user"></div></div>`;
+  row.querySelector('.msg.user').textContent = text;
+  aiBody.appendChild(row);
+  aiBody.scrollTop = aiBody.scrollHeight;
+  aiInput.value = '';
+  if(aiSuggest) aiSuggest.style.display = 'none';
+  askAI(text);
+}
+
+aiSend.addEventListener('click', ()=>sendUserMessage(aiInput.value));
+aiInput.addEventListener('keydown', e=>{ if(e.key==='Enter') sendUserMessage(aiInput.value); });
+aiSuggest.querySelectorAll('button').forEach(b=>b.addEventListener('click', ()=>sendUserMessage(currentLang==='fr' ? b.dataset.qFr : b.dataset.qEn)));
+
+// ---------- scroll progress ----------
+const progressBar = document.getElementById('scrollProgress');
+function updateProgress(){ const h=document.documentElement; progressBar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'; }
+document.addEventListener('scroll', updateProgress, {passive:true}); updateProgress();
+
+// ---------- scrollspy ----------
+const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+const spyTargets = Array.from(navAnchors).map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spyObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+    if(!link) return;
+    if(entry.isIntersecting){ navAnchors.forEach(a=>a.classList.remove('active')); link.classList.add('active'); }
+  });
+}, {rootMargin:'-40% 0px -50% 0px'});
+spyTargets.forEach(t=>spyObserver.observe(t));
+
+// ---------- reveal ----------
+const revealSelectors = '.section-head, .readme, .timeline, .proj-grid, .skill-grid, .grid3, .contact-band';
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('in'); revealObserver.unobserve(entry.target); } });
+}, {threshold:.15, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll(revealSelectors).forEach(el=>revealObserver.observe(el));
+
+// ---------- count-up ----------
+const countObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting) return;
+    const el=entry.target, target=parseInt(el.dataset.count,10), suffix=el.dataset.suffix||'', dur=1100, start=performance.now();
+    function tick(now){
+      const p=Math.min(1,(now-start)/dur), eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(eased*target)+suffix;
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick); countObserver.unobserve(el);
+  });
+}, {threshold:.6});
+document.querySelectorAll('.metric .v[data-count]').forEach(el=>countObserver.observe(el));
+
+// ---------- typing role (loop, bilingual) ----------
+const rolePhrasesFr = [
+  "ingénieure_ia / data_scientist",
+  "NLP · LLM · RAG",
+  "Computer Vision · Deep Learning",
+  "MLOps · Docker · Kubernetes",
+  "cloud · Azure"
+];
+const rolePhrasesEn = [
+  "ai_engineer / data_scientist",
+  "NLP · LLM · RAG",
+  "Computer Vision · Deep Learning",
+  "MLOps · Docker · Kubernetes",
+  "cloud · Azure"
+];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let typeGen = 0;
+function startTypewriter(el, phrases, startDelay, gen){
+  if(!el) return;
+  if(reducedMotion){ el.textContent = phrases.join(' · '); return; }
+  let phraseIndex = 0, charIndex = 0, deleting = false;
+  const TYPE_MS = 45, DELETE_MS = 26, HOLD_MS = 1400, GAP_MS = 350;
+  function loop(){
+    if(gen !== typeGen) return;
+    const current = phrases[phraseIndex];
+    if(!deleting){
+      charIndex++;
+      el.textContent = current.slice(0, charIndex);
+      if(charIndex >= current.length){ deleting = true; setTimeout(loop, HOLD_MS); return; }
+      setTimeout(loop, TYPE_MS);
+    } else {
+      charIndex--;
+      el.textContent = current.slice(0, charIndex);
+      if(charIndex <= 0){ deleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; setTimeout(loop, GAP_MS); return; }
+      setTimeout(loop, DELETE_MS);
+    }
+  }
+  setTimeout(loop, startDelay || 0);
+}
+function restartTypewriters(){
+  typeGen++;
+  const gen = typeGen;
+  const phrases = currentLang === 'fr' ? rolePhrasesFr : rolePhrasesEn;
+  const heroEl = document.getElementById('roleTyped');
+  const profilEl = document.getElementById('roleTypedProfil');
+  if(heroEl) heroEl.textContent = '';
+  if(profilEl) profilEl.textContent = '';
+  startTypewriter(heroEl, phrases, 80, gen);
+  startTypewriter(profilEl, phrases, 200, gen);
+}
+restartTypewriters();
+
+if(reducedMotion){
+  document.querySelectorAll('.hero-in').forEach(el=>{ el.style.animation='none'; el.style.opacity='1'; });
+  document.querySelectorAll(revealSelectors).forEach(el=>el.classList.add('in'));
+}
+
+const langToggle = document.getElementById('langToggle');
+function applyLang(lang){
+  currentLang = lang;
+  document.getElementById('htmlRoot').setAttribute('lang', lang);
+  document.querySelectorAll('[data-fr]').forEach(el=>{
+    const val = lang==='fr' ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+    if(val!=null) el.innerHTML = val;
+  });
+  document.querySelectorAll('[data-fr-ph]').forEach(el=>{
+    const val = lang==='fr' ? el.getAttribute('data-fr-ph') : el.getAttribute('data-en-ph');
+    if(val!=null) el.setAttribute('placeholder', val);
+  });
+  langToggle.textContent = lang==='fr' ? 'EN' : 'FR';
+  refreshContactLinks();
+  renderProjects();
+  restartTypewriters();
+}
+langToggle.addEventListener('click', ()=>{
+  applyLang(currentLang === 'fr' ? 'en' : 'fr');
+});
+</script>
+</body>
+</html>
