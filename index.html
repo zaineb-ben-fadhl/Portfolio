@@ -1008,9 +1008,52 @@ const aiSuggest = document.getElementById('aiSuggest');
 aiFab.addEventListener('click', ()=>{ aiPanel.classList.add('open'); aiFab.style.display='none'; aiInput.focus(); });
 aiClose.addEventListener('click', ()=>{ aiPanel.classList.remove('open'); aiFab.style.display='flex'; });
 
-const FR_STOP = new Set(['ai','a','est','suis','es','sont','sommes','êtes','être','le','la','les','lui','leur','eux','elle','elles','il','ils','on','nous','vous','ce','cet','cette','ces','son','sa','ses','mon','ma','mes','ton','ta','tes','notre','nos','votre','vos','un','une','des','du','de','d\'','d','l\'','l','et','ou','mais','donc','car','ni','or','dans','sur','sous','pour','par','avec','sans','chez','vers','entre','depuis','pendant','avant','après','qui','que','quoi','dont','où','comment','quand','quel','quelle','quels','quelles','ne','pas','plus','jamais','rien','très','assez','peu','trop','si','tant','beaucoup','aussi','au','aux','fait','faire','peut','peux','veux','veut','sais','sait','dois','doit','bien','tous','toute','toutes','toujours','alors','puis','ensuite','enfin','voilà','voici','combien']);
-const EN_STOP = new Set(['a','an','the','is','are','was','were','be','been','being','i','you','he','she','it','we','they','me','him','her','us','them','my','your','his','its','our','their','and','or','but','so','because','nor','in','on','under','for','by','with','without','at','to','from','before','after','who','what','which','whose','where','how','when','why','not','no','never','nothing','very','quite','little','too','if','so much','also','can','could','want','wants','know','knows','must','well','all','always','then','next','finally','how many','how much','does','do','did','has','have','had']);
+const FR_STOP = new Set([
+  'ai','a','à','est','es','suis','sommes','êtes','sont','être','étais','étaient','était',
+  'le','la','les','l','l\'',
+  'un','une','des','du','de','d','d\'','en','y',
+  'ce','cet','cette','ces','ceci','cela','ça',
+  'il','ils','elle','elles','on','nous','vous','je','tu',
+  'me','m','m\'','te','t','t\'','se','s','s\'',
+  'lui','leur','leurs','eux',
+  'son','sa','ses','mon','ma','mes','ton','ta','tes','notre','nos','votre','vos',
+  'et','ou','mais','donc','car','ni','or',
+  'dans','sur','sous','pour','par','avec','sans','chez','vers','entre','depuis','pendant','avant','après',
+  'qui','que','qu','quoi','dont','où',
+  'comment','quand','quel','quelle','quels','quelles','combien','pourquoi',
+  'ne','pas','plus','jamais','rien','très','assez','peu','trop','si','tant','beaucoup','aussi',
+  'au','aux','fait','faire','peut','peux','veux','veut','sais','sait','dois','doit',
+  'bien','tous','toute','toutes','toujours','alors','puis','ensuite','enfin','voilà','voici'
+]);
+
+const EN_STOP = new Set([
+  'a','an','the','is','are','was','were','be','been','being',
+  'i','you','he','she','it','we','they','me','him','her','us','them',
+  'my','your','his','its','our','their',
+  'and','or','but','so','because','nor',
+  'in','on','under','for','by','with','without','at','to','from','before','after',
+  'who','what','which','whose','where','how','when','why',
+  'not','no','never','nothing','very','quite','little','too',
+  'if','also','can','could','want','wants','know','knows','must','well','all','always',
+  'then','next','finally','does','do','did','has','have','had'
+]);
+
 const STOP = new Set([...FR_STOP, ...EN_STOP]);
+
+// ===== Tokenisation =====
+function tokenize(text){
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9àâäçéèêëîïôöûùüÿœæ\-']/g, ' ')
+    .split(/\s+/)
+    .filter(t => t.length > 1 && !STOP.has(t));
+}
+
+// Stemming minimal : gère les pluriels simples ("projet"/"projets")
+function stem(word){
+  if(word.length > 4 && word.endsWith('s') && !word.endsWith('ss')) return word.slice(0, -1);
+  return word;
+}
 
 // ---------- Base de connaissances (chaque section = 1 chunk RAG) ----------
 // "general:true" marque le chunk catalogue (liste des 7 projets). Une correspondance
@@ -1120,6 +1163,15 @@ const PROFILE = [
     followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } }
 ];
 
+// Précalcul (une seule fois) des mots-clés de chaque section, tokenisés et stemmés
+// via le même pipeline que les questions, pour un matching cohérent.
+PROFILE.forEach(section => {
+  section._termWords = section.terms.map(term => {
+    const words = tokenize(term).map(stem);
+    return { words, multi: words.length > 1 };
+  }).filter(t => t.words.length > 0);
+});
+
 const SMALLTALK = {
   greeting: { terms:['bonjour','salut','bonsoir','coucou','hey','hello','hi','good morning','good afternoon','good evening'],
     fr:"Bonjour ! Ravi de vous accueillir. Posez-moi une question sur le parcours, les projets, les compétences ou la disponibilité de Zaineb — je m'appuie directement sur son profil pour vous répondre.",
@@ -1132,10 +1184,6 @@ const SMALLTALK = {
     en:"Thank you for stopping by, and see you soon! Zaineb would be glad to connect with you." }
 };
 
-function tokenize(text){
-  return text.toLowerCase().replace(/[^a-z0-9àâçéèêëîïôûùüÿœæ\-]/g,' ').split(/\s+/).filter(t=>t.length>1 && !STOP.has(t));
-}
-
 function matchSmallTalk(question){
   const q = question.toLowerCase().trim();
   for(const key of Object.keys(SMALLTALK)){
@@ -1147,37 +1195,46 @@ function matchSmallTalk(question){
   return null;
 }
 
-// ---------- Retrieval : scoring + priorité aux chunks spécifiques + seuil de confiance ----------
+// ---------- Retrieval : matching exact par mot + bonus expressions + seuil de confiance ----------
 function findBestSections(question){
-  const tokens = tokenize(question);
-  if(tokens.length===0) return [];
+  const tokens = tokenize(question).map(stem);
+  if(tokens.length === 0) return [];
+  const tokenSet = new Set(tokens);
 
-  const scored = PROFILE.map(section=>{
-    let score=0;
-    for(const token of tokens){
-      for(const term of section.terms){
-        const t=term.toLowerCase();
-        if(t===token) score+=4;                              // correspondance exacte du mot-clé
-        else if(t.includes(token)||token.includes(t)) score+=3; // correspondance partielle
-        else if(t.split(' ').some(w=>w===token)) score+=2;      // mot présent dans une expression composée
+  const scored = PROFILE.map(section => {
+    let score = 0;
+    for(const termInfo of section._termWords){
+      if(!termInfo.multi){
+        // Terme = un seul mot → correspondance EXACTE uniquement (fini le "includes" libre)
+        if(tokenSet.has(termInfo.words[0])) score += 5;
+      } else {
+        // Terme = expression → bonus fort si tous les mots-clés sont présents,
+        // bonus partiel si au moins la moitié le sont
+        const matchCount = termInfo.words.filter(w => tokenSet.has(w)).length;
+        if(matchCount === termInfo.words.length){
+          score += 6;
+        } else if(matchCount >= Math.ceil(termInfo.words.length / 2)){
+          score += matchCount;
+        }
       }
     }
-    return {section, score};
-  }).filter(s=>s.score>0).sort((a,b)=>b.score-a.score);
+    return { section, score };
+  }).filter(s => s.score > 0).sort((a, b) => b.score - a.score);
 
-  if(scored.length===0) return [];
+  if(scored.length === 0) return [];
 
   // Si au moins un chunk spécifique matche, on exclut le chunk catalogue général :
-  // évite de citer les 7 projets quand la question porte sur un seul.
-  const hasSpecificMatch = scored.some(s=>!s.section.general);
-  const pool = hasSpecificMatch ? scored.filter(s=>!s.section.general) : scored;
+  // évite de tout citer quand la question porte sur un seul projet.
+  const hasSpecificMatch = scored.some(s => !s.section.general);
+  const pool = hasSpecificMatch ? scored.filter(s => !s.section.general) : scored;
+  if(pool.length === 0) return [];
 
   const topScore = pool[0].score;
-  const MIN_SCORE = 3; // en dessous de ce score, la correspondance est jugée trop faible → fallback
+  const MIN_SCORE = 5; // en dessous de ce score, la correspondance est jugée trop faible → fallback
   if(topScore < MIN_SCORE) return [];
 
   const threshold = topScore * 0.6; // ne garder que les chunks vraiment proches du meilleur score
-  return pool.filter(s=>s.score>=threshold).slice(0,2).map(s=>s.section);
+  return pool.filter(s => s.score >= threshold).slice(0, 2).map(s => s.section);
 }
 
 const FALLBACK = {
