@@ -203,7 +203,6 @@
   .card-body li::before{content:'·'; position:absolute; left:0; color:var(--cyan); font-weight:900; font-size:18px; line-height:1;}
   .proj-tags{display:flex; flex-wrap:wrap; gap:6px; padding:18px 22px 22px;}
 
-  /* ---------- COMPÉTENCES / SKILLS ---------- */
   .skill-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
   @media (max-width:900px){.skill-grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:600px){.skill-grid{grid-template-columns:1fr;}}
@@ -357,7 +356,6 @@
     background:rgba(139,124,246,.08);
   }
 
-  /* ---------- FORMATION, CERTIFICATIONS & LANGUES (MODERNISÉ SANS EMOJI) ---------- */
   .grid3{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
   .grid3 .cert-panel{grid-column:1 / -1;}
   @media (max-width:860px){.grid3{grid-template-columns:1fr;}}
@@ -713,7 +711,6 @@
     </div>
   </section>
 
-  <!-- ========== SECTION CERTIFICATIONS MODERNISÉE SANS EMOJI ========== -->
   <section>
     <div class="wrap">
       <div class="section-head">
@@ -883,7 +880,7 @@ function refreshContactLinks(){
 }
 refreshContactLinks();
 
-// ---------- projects (bilingual) — 7 projets désormais ----------
+// ---------- projects (bilingual) — 7 projets ----------
 const projects = [
   { id:'mlops', win:false,
     badge:{fr:'Académique', en:'Academic'},
@@ -955,7 +952,6 @@ const projects = [
           'Vector-based semantic indexing and search via Qdrant for fast, relevant retrieval']
     },
     tags:['Python','Mistral','Qdrant','RAG','NLP'] },
-  // ---------- NOUVEAU PROJET AJOUTÉ ----------
   { id:'nephritic', win:false,
     badge:{fr:'Académique', en:'Academic'},
     title:{fr:'Analyse et Prédiction de la Douleur liée à la Colique Néphritique (PFA 2)', en:'Analysis and Prediction of Nephritic Colic Pain — PFA 2'},
@@ -1016,6 +1012,10 @@ const FR_STOP = new Set(['ai','a','est','suis','es','sont','sommes','êtes','êt
 const EN_STOP = new Set(['a','an','the','is','are','was','were','be','been','being','i','you','he','she','it','we','they','me','him','her','us','them','my','your','his','its','our','their','and','or','but','so','because','nor','in','on','under','for','by','with','without','at','to','from','before','after','who','what','which','whose','where','how','when','why','not','no','never','nothing','very','quite','little','too','if','so much','also','can','could','want','wants','know','knows','must','well','all','always','then','next','finally','how many','how much','does','do','did','has','have','had']);
 const STOP = new Set([...FR_STOP, ...EN_STOP]);
 
+// ---------- Base de connaissances (chaque section = 1 chunk RAG) ----------
+// "general:true" marque le chunk catalogue (liste des 7 projets). Une correspondance
+// spécifique (ex: techx, rag) fait toujours taire ce chunk général pour éviter
+// de tout citer quand la question porte sur un seul projet.
 const PROFILE = [
   { id:'synthese', terms:['profil','synthèse','présentation','qui est',"c'est quoi",'parcours','ingénieure','ingénieur','data scientist','présente','résumé','à propos','profile','summary','who is','background','engineer'],
     fr:{ html:"<p>Zaineb Ben Fadhl est <strong>ingénieure diplômée en Intelligence Artificielle et Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Spécialisée en <strong>NLP, LLM et architectures RAG</strong>, ainsi qu'en <strong>Computer Vision, Deep Learning et MLOps</strong></li><li>Expérience confirmée du déploiement conteneurisé (<strong>Docker, Kubernetes</strong>) et cloud (<strong>Azure</strong>)</li><li>3 stages, 7 projets déployés, 3ᵉ place au concours TechX 2025</li></ul>", src:"profil.md" },
@@ -1077,16 +1077,47 @@ const PROFILE = [
     en:{ html:"<p>Zaineb is proficient in containerized deployment with <strong>Docker</strong> and <strong>Kubernetes</strong> (cluster orchestration, CI/CD pipelines, automatic rollback), as well as <strong>Azure</strong> cloud for hosting end-to-end MLOps pipelines.</p>", src:"skills · MLOps" },
     followups:{ fr:['Détails du stage Anavid'], en:['Anavid internship details'] } },
 
-  { id:'projets', terms:['projet','projets','réalisation','portfolio','github','combien de projets','project','projects','how many projects'],
+  // ---- Chunk catalogue : ne répond QUE si aucune correspondance spécifique n'est trouvée ----
+  { id:'projets', general:true, terms:['projet','projets','réalisation','portfolio','github','combien de projets','project','projects','how many projects'],
     fr:{ html:"<p>Le portfolio de Zaineb compte <strong>7 projets académiques et personnels</strong> :</p><ul><li>Pipeline MLOps reproductible (Docker/Kubernetes)</li><li>Reconnaissance faciale pour recommandations cosmétiques</li><li>Suivi de santé mentale en entreprise par IA agentique (Azure)</li><li>Prédiction des blessures sportives — 🏆 3ᵉ place TechX 2025</li><li>Application microservices avec LLaMA</li><li>Système RAG adaptatif multi-bases avec Mistral et Qdrant</li><li>Analyse et prédiction de la douleur néphritique (PFA 2)</li></ul>", src:"projets" },
     en:{ html:"<p>Zaineb's portfolio includes <strong>7 academic and personal projects</strong>:</p><ul><li>Reproducible MLOps pipeline (Docker/Kubernetes)</li><li>Facial recognition for cosmetic recommendations</li><li>Agentic-AI workplace mental health monitoring (Azure)</li><li>Sports injury prediction — 🏆 3rd place at TechX 2025</li><li>Microservices application with LLaMA</li><li>Adaptive multi-knowledge-base RAG system with Mistral and Qdrant</li><li>Nephritic colic pain analysis and prediction (PFA 2)</li></ul>", src:"projects" },
     followups:{ fr:['Projets RAG / LLM','Projet primé TechX'], en:['RAG / LLM projects','Award-winning TechX project'] } },
 
-  // Ajout d'une entrée pour le nouveau projet dans l'assistant
-  { id:'projet_nephritic', terms:['néphritique','colique','douleur','médical','antalgique','pfa 2','nephritic','colic','pain','medical'],
-    fr:{ html:"<p><strong>Analyse et Prédiction de la Douleur liée à la Colique Néphritique (PFA 2)</strong></p><ul><li>Pipeline d'analyse de données médicales pour prédire l'efficacité des traitements antalgiques</li><li>Prétraitement des données cliniques (nettoyage, normalisation des variables et échelles de douleur)</li><li>Visualisation des tendances temporelles de la douleur (matplotlib, seaborn)</li><li>Développement et évaluation de modèles de machine learning (Logistic Regression, Random Forest, SVM, réseaux de neurones)</li><li>Rédaction d'un article scientifique (publication en cours)</li></ul>", src:"projet — PFA 2" },
-    en:{ html:"<p><strong>Analysis and Prediction of Nephritic Colic Pain (PFA 2)</strong></p><ul><li>Medical data analysis pipeline to predict the effectiveness of pain relief treatments</li><li>Preprocessing of clinical data (cleaning, normalization of variables and pain scales)</li><li>Visualization of temporal pain trends (matplotlib, seaborn)</li><li>Development and evaluation of machine learning models (Logistic Regression, Random Forest, SVM, neural networks)</li><li>Scientific article writing (publication in progress)</li></ul>", src:"project — PFA 2" },
-    followups:{ fr:['Voir ses projets'], en:['See her projects'] } }
+  // ---- Chunks spécifiques : un par projet, pour des réponses ciblées ----
+  { id:'projet_mlops', terms:['pipeline mlops','mlops reproductible','dvc','zenml','mlflow','optuna','ci/cd pipeline','reproductible','déployable','grafana'],
+    fr:{ html:"<p><strong>Pipeline MLOps reproductible & déployable</strong></p><ul><li>Workflow MLOps complet couvrant versioning, orchestration et déploiement : Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna</li><li>Conteneurisation et orchestration des services via Docker et Kubernetes pour un pipeline reproductible de bout en bout</li><li>API d'inférence exposée via Docker Compose, déployée sur cluster Kubernetes avec CI/CD et rollback automatique en cas de dérive détectée (Prometheus)</li></ul>", src:"projet — Pipeline MLOps" },
+    en:{ html:"<p><strong>Reproducible & Deployable MLOps Pipeline</strong></p><ul><li>End-to-end MLOps workflow covering versioning, orchestration and deployment: Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna</li><li>Containerized and orchestrated services with Docker and Kubernetes for a fully reproducible pipeline</li><li>Inference API exposed via Docker Compose, deployed on a Kubernetes cluster with CI/CD and automatic rollback on detected drift (Prometheus)</li></ul>", src:"project — MLOps Pipeline" },
+    followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
+
+  { id:'projet_cosmetic', terms:['cosmétique','cosmetic','reconnaissance faciale','facial','maquillage','morphologie','recommandation cosmétique','skincare'],
+    fr:{ html:"<p><strong>Reconnaissance faciale pour recommandations cosmétiques</strong></p><ul><li>Système de reconnaissance faciale détectant les traits du visage par computer vision</li><li>Génération de recommandations de produits cosmétiques personnalisées selon la morphologie de l'utilisateur</li></ul>", src:"projet — Reconnaissance faciale" },
+    en:{ html:"<p><strong>Facial Recognition for Cosmetic Recommendations</strong></p><ul><li>Facial recognition system detecting facial features via computer vision</li><li>Generated personalized cosmetic product recommendations based on the user's facial morphology</li></ul>", src:"project — Facial Recognition" },
+    followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
+
+  { id:'projet_mentalhealth', terms:['santé mentale','mental health','burnout','stress','agentique','agentic','chatbot empathique','bien-être','wellbeing'],
+    fr:{ html:"<p><strong>Suivi de santé mentale en entreprise par IA agentique</strong></p><ul><li>Analyse NLP de journaux de bord et retours des collaborateurs pour détecter stress, frustration et burnout</li><li>Agent intelligent délivrant des recommandations personnalisées via un chatbot empathique</li><li>Pipeline MLOps complet (entraînement, versioning, API d'inférence, monitoring) déployé sur le cloud Azure</li></ul>", src:"projet — Santé mentale (Azure)" },
+    en:{ html:"<p><strong>AI-Agent-Based Workplace Mental Health Monitoring</strong></p><ul><li>NLP analysis of logs and employee feedback to detect stress, frustration and burnout</li><li>Intelligent agent delivering personalized recommendations via an empathetic chatbot</li><li>Full MLOps pipeline (training, versioning, inference API, monitoring) deployed on Azure cloud</li></ul>", src:"project — Mental Health (Azure)" },
+    followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
+
+  { id:'projet_techx', terms:['techx','primé','prix','récompense','récompensé','concours','compétition','blessure','blessures','sportif','sportive','sport','athlète','award','competition','prize','injury','athlete'],
+    fr:{ html:"<p><strong>🏆 Plateforme de prédiction des blessures sportives — 3ᵉ place au concours TechX 2025</strong></p><ul><li>Modèles ML (régression logistique, arbre de décision) atteignant 85% de précision</li><li>Frontend React et backend API pour le suivi temporel des risques</li><li>Recommandations de récupération personnalisées et comparaison visuelle des données athlète</li></ul>", src:"projet — TechX 2025 (primé)" },
+    en:{ html:"<p><strong>🏆 Sports Injury Prediction Platform — 3rd place at TechX 2025</strong></p><ul><li>ML models (logistic regression, decision tree) achieving 85% accuracy</li><li>React frontend and API backend for tracking risk over time</li><li>Personalized recovery recommendations and visual comparison of athlete data</li></ul>", src:"project — TechX 2025 (award-winning)" },
+    followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
+
+  { id:'projet_microservices', terms:['microservices','microservice','grpc','graphql','kafka','llama','api gateway'],
+    fr:{ html:"<p><strong>Application basée sur une architecture microservices</strong></p><ul><li>Architecture microservices (REST, gRPC) avec API Gateway (GraphQL, Kafka)</li><li>Intégration du modèle de langage LLaMA pour la génération de contenu et l'analyse de texte</li><li>Documentation complète de l'architecture et des schémas de données pour faciliter la maintenance</li></ul>", src:"projet — Microservices / LLaMA" },
+    en:{ html:"<p><strong>Microservices-Based Application</strong></p><ul><li>Microservices architecture (REST, gRPC) with API Gateway (GraphQL, Kafka)</li><li>Integrated the LLaMA language model for content generation and text analysis</li><li>Complete architecture and data-schema documentation to ease maintenance</li></ul>", src:"project — Microservices / LLaMA" },
+    followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
+
+  { id:'projet_rag', terms:['rag','llm','mistral','qdrant','adaptatif','multi-bases','multi bases','base de connaissances','vectoriel','vectorielle','recherche sémantique','semantic search','knowledge base','embedding','embeddings'],
+    fr:{ html:"<p><strong>Système RAG adaptatif multi-bases de connaissances</strong></p><ul><li>Architecture RAG s'adaptant dynamiquement à une nouvelle base de connaissances à chaque utilisation</li><li>LLM Mistral intégré pour générer des réponses contextualisées à partir des documents récupérés</li><li>Indexation et recherche sémantique vectorielle via Qdrant pour une récupération rapide et pertinente</li></ul>", src:"projet — RAG adaptatif (Mistral / Qdrant)" },
+    en:{ html:"<p><strong>Adaptive Multi-Knowledge-Base RAG System</strong></p><ul><li>RAG architecture dynamically adapting to a new knowledge base on each use</li><li>Integrated Mistral LLM to generate context-aware answers from retrieved documents</li><li>Vector-based semantic indexing and search via Qdrant for fast, relevant retrieval</li></ul>", src:"project — Adaptive RAG (Mistral / Qdrant)" },
+    followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
+
+  { id:'projet_nephritic', terms:['néphritique','colique','douleur','médical','antalgique','pfa 2','pfa2','nephritic','colic','pain','medical','clinique','clinical'],
+    fr:{ html:"<p><strong>Analyse et Prédiction de la Douleur liée à la Colique Néphritique (PFA 2)</strong></p><ul><li>Pipeline d'analyse de données médicales pour prédire l'efficacité des traitements antalgiques</li><li>Prétraitement des données cliniques (nettoyage, normalisation des variables et échelles de douleur)</li><li>Visualisation des tendances temporelles de la douleur (matplotlib, seaborn)</li><li>Développement et évaluation de modèles de machine learning (Logistic Regression, Random Forest, SVM, réseaux de neurones)</li><li>Rédaction d'un article scientifique (publication en cours)</li></ul>", src:"projet — PFA 2 (douleur néphritique)" },
+    en:{ html:"<p><strong>Analysis and Prediction of Nephritic Colic Pain (PFA 2)</strong></p><ul><li>Medical data analysis pipeline to predict the effectiveness of pain relief treatments</li><li>Preprocessing of clinical data (cleaning, normalization of variables and pain scales)</li><li>Visualization of temporal pain trends (matplotlib, seaborn)</li><li>Development and evaluation of machine learning models (Logistic Regression, Random Forest, SVM, neural networks)</li><li>Scientific article writing (publication in progress)</li></ul>", src:"project — PFA 2 (nephritic pain)" },
+    followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } }
 ];
 
 const SMALLTALK = {
@@ -1116,28 +1147,42 @@ function matchSmallTalk(question){
   return null;
 }
 
+// ---------- Retrieval : scoring + priorité aux chunks spécifiques + seuil de confiance ----------
 function findBestSections(question){
   const tokens = tokenize(question);
   if(tokens.length===0) return [];
+
   const scored = PROFILE.map(section=>{
     let score=0;
     for(const token of tokens){
       for(const term of section.terms){
         const t=term.toLowerCase();
-        if(t.includes(token)||token.includes(t)) score+=3;
-        else if(t.split(' ').some(w=>w===token)) score+=2;
+        if(t===token) score+=4;                              // correspondance exacte du mot-clé
+        else if(t.includes(token)||token.includes(t)) score+=3; // correspondance partielle
+        else if(t.split(' ').some(w=>w===token)) score+=2;      // mot présent dans une expression composée
       }
     }
     return {section, score};
   }).filter(s=>s.score>0).sort((a,b)=>b.score-a.score);
+
   if(scored.length===0) return [];
-  const threshold = scored[0].score*0.5;
-  return scored.filter(s=>s.score>=threshold).slice(0,2).map(s=>s.section);
+
+  // Si au moins un chunk spécifique matche, on exclut le chunk catalogue général :
+  // évite de citer les 7 projets quand la question porte sur un seul.
+  const hasSpecificMatch = scored.some(s=>!s.section.general);
+  const pool = hasSpecificMatch ? scored.filter(s=>!s.section.general) : scored;
+
+  const topScore = pool[0].score;
+  const MIN_SCORE = 3; // en dessous de ce score, la correspondance est jugée trop faible → fallback
+  if(topScore < MIN_SCORE) return [];
+
+  const threshold = topScore * 0.6; // ne garder que les chunks vraiment proches du meilleur score
+  return pool.filter(s=>s.score>=threshold).slice(0,2).map(s=>s.section);
 }
 
 const FALLBACK = {
-  fr:"Je n'ai pas trouvé d'information précise à ce sujet dans le profil de Zaineb. N'hésitez pas à reformuler votre question, ou à la contacter directement : <strong>benfadhelzaineb1@gmail.com</strong> / WhatsApp <strong>+216 99 576 809</strong>.",
-  en:"I couldn't find precise information on this in Zaineb's profile. Feel free to rephrase your question, or contact her directly: <strong>benfadhelzaineb1@gmail.com</strong> / WhatsApp <strong>+216 99 576 809</strong>."
+  fr:"Cette information n'existe pas dans la base de connaissances actuelle du profil de Zaineb. N'hésitez pas à reformuler votre question, ou à la contacter directement : <strong>benfadhelzaineb1@gmail.com</strong> / WhatsApp <strong>+216 99 576 809</strong>.",
+  en:"This information does not exist in Zaineb's current knowledge base. Feel free to rephrase your question, or contact her directly: <strong>benfadhelzaineb1@gmail.com</strong> / WhatsApp <strong>+216 99 576 809</strong>."
 };
 const DEFAULT_FOLLOWUPS = { fr:['Voir ses projets','Ses compétences','Disponibilité'], en:['See her projects','Her skills','Availability'] };
 
