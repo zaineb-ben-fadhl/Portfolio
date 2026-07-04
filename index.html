@@ -557,7 +557,7 @@
       <a class="btn" id="waBtn" href="#" target="_blank" rel="noopener">↗ WhatsApp</a>
     </div>
     <div class="metric-strip hero-in d6">
-      <div class="metric"><div class="v" data-count="7">0</div><div class="l" data-fr="projets déployés" data-en="deployed projects">projets déployés</div></div>
+      <div class="metric"><div class="v" data-count="8">0</div><div class="l" data-fr="projets déployés" data-en="deployed projects">projets déployés</div></div>
       <div class="metric"><div class="v" data-count="3">0</div><div class="l" data-fr="stages IA & data" data-en="AI & data internships">stages IA & data</div></div>
       <div class="metric"><div class="v" data-count="10" data-suffix="+">0</div><div class="l" data-fr="certifications" data-en="certifications">certifications</div></div>
       <div class="metric"><div class="v" data-fr="3e" data-en="3rd">3e</div><div class="l" data-fr="place — TechX 2025" data-en="place — TechX 2025">place — TechX 2025</div></div>
@@ -655,7 +655,7 @@
     <div class="wrap">
       <div class="section-head">
         <div><div class="eyebrow"><span class="dot"></span> <span data-fr="portfolio technique" data-en="technical portfolio">portfolio technique</span></div><h2 class="title" data-fr="Projets" data-en="Projects">Projets</h2></div>
-        <span class="section-tag" data-fr="7 projets — académiques & personnels" data-en="7 projects — academic & personal">7 projets — académiques & personnels</span>
+        <span class="section-tag" data-fr="8 projets — académiques & personnels" data-en="8 projects — academic & personal">8 projets — académiques & personnels</span>
       </div>
       <div class="proj-grid" id="projGrid"></div>
     </div>
@@ -952,6 +952,18 @@ const projects = [
           'Vector-based semantic indexing and search via Qdrant for fast, relevant retrieval']
     },
     tags:['Python','Mistral','Qdrant','RAG','NLP'] },
+  { id:'rafiq', win:true,
+    badge:{fr:"🏆 Nuit de l'IA 2025 — 2e place", en:"🏆 Nuit de l'IA 2025 — 2nd place"},
+    title:{fr:'Rafiq IA', en:'Rafiq IA'},
+    bullets:{
+      fr:["Assistant conversationnel basé sur l'IA générative, combinant LLM (LLaMA) et architecture RAG",
+          'Base de données MongoDB pour la persistance des documents, conversations et connaissances',
+          "2ᵉ place au hackathon Nuit de l'IA 2025"],
+      en:["Conversational assistant based on generative AI, combining an LLM (LLaMA) and a RAG architecture",
+          'MongoDB database for persisting documents, conversations and knowledge',
+          "2nd place at the Nuit de l'IA 2025 hackathon"]
+    },
+    tags:['Python','LLaMA','RAG','MongoDB','Generative AI','NLP'] },
   { id:'nephritic', win:false,
     badge:{fr:'Académique', en:'Academic'},
     title:{fr:'Analyse et Prédiction de la Douleur liée à la Colique Néphritique (PFA 2)', en:'Analysis and Prediction of Nephritic Colic Pain — PFA 2'},
@@ -1061,8 +1073,8 @@ function stem(word){
 // de tout citer quand la question porte sur un seul projet.
 const PROFILE = [
   { id:'synthese', terms:['profil','synthèse','présentation','qui est',"c'est quoi",'parcours','ingénieure','ingénieur','data scientist','présente','résumé','à propos','profile','summary','who is','background','engineer'],
-    fr:{ html:"<p>Zaineb Ben Fadhl est <strong>ingénieure diplômée en Intelligence Artificielle et Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Spécialisée en <strong>NLP, LLM et architectures RAG</strong>, ainsi qu'en <strong>Computer Vision, Deep Learning et MLOps</strong></li><li>Expérience confirmée du déploiement conteneurisé (<strong>Docker, Kubernetes</strong>) et cloud (<strong>Azure</strong>)</li><li>3 stages, 7 projets déployés, 3ᵉ place au concours TechX 2025</li></ul>", src:"profil.md" },
-    en:{ html:"<p>Zaineb Ben Fadhl is an <strong>engineering graduate in Artificial Intelligence and Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Specialized in <strong>NLP, LLM and RAG architectures</strong>, as well as <strong>Computer Vision, Deep Learning and MLOps</strong></li><li>Proven experience with containerized (<strong>Docker, Kubernetes</strong>) and cloud (<strong>Azure</strong>) deployment</li><li>3 internships, 7 deployed projects, 3rd place at the TechX 2025 competition</li></ul>", src:"profile.md" },
+    fr:{ html:"<p>Zaineb Ben Fadhl est <strong>ingénieure diplômée en Intelligence Artificielle et Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Spécialisée en <strong>NLP, LLM et architectures RAG</strong>, ainsi qu'en <strong>Computer Vision, Deep Learning et MLOps</strong></li><li>Expérience confirmée du déploiement conteneurisé (<strong>Docker, Kubernetes</strong>) et cloud (<strong>Azure</strong>)</li><li>3 stages, 8 projets déployés, 3ᵉ place au concours TechX 2025 et 2ᵉ place à la Nuit de l'IA 2025</li></ul>", src:"profil.md" },
+    en:{ html:"<p>Zaineb Ben Fadhl is an <strong>engineering graduate in Artificial Intelligence and Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Specialized in <strong>NLP, LLM and RAG architectures</strong>, as well as <strong>Computer Vision, Deep Learning and MLOps</strong></li><li>Proven experience with containerized (<strong>Docker, Kubernetes</strong>) and cloud (<strong>Azure</strong>) deployment</li><li>3 internships, 8 deployed projects, 3rd place at TechX 2025 and 2nd place at Nuit de l'IA 2025</li></ul>", src:"profile.md" },
     followups:{ fr:['Pourquoi la recruter ?','Disponibilité'], en:['Why hire her?','Availability'] } },
 
   { id:'dispo', terms:['disponible','disponibilité','immédiatement','dispo','urgence','rapidement','commencer','quand','préavis','délai','libre','available','availability','immediately','start','notice'],
@@ -1076,8 +1088,8 @@ const PROFILE = [
     followups:{ fr:['Disponibilité'], en:['Availability'] } },
 
   { id:'pourquoi', terms:['pourquoi','recruter','embaucher','atouts','forces','qualites','qualités','valeur','différence','unique','choisir','avantage','why','hire','strengths','value','choose'],
-    fr:{ html:"<p>Plusieurs raisons plaident en faveur du recrutement de Zaineb :</p><ul><li><strong>Expertise de bout en bout</strong> — de l'analyse du besoin métier jusqu'à la mise en production</li><li>Maîtrise transverse : <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Déploiement conteneurisé (Docker/Kubernetes) et cloud (Azure) déjà éprouvé en entreprise</li><li>3 stages, dont un stage de fin d'études en France, et une 3ᵉ place au concours TechX 2025</li><li><strong>Disponibilité immédiate</strong></li></ul>", src:"profil.md · expérience" },
-    en:{ html:"<p>Several reasons make a strong case for hiring Zaineb:</p><ul><li><strong>End-to-end expertise</strong> — from business-need analysis through to production</li><li>Cross-cutting skills: <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Proven containerized (Docker/Kubernetes) and cloud (Azure) deployment experience in industry</li><li>3 internships, including a final-year one in France, and 3rd place at TechX 2025</li><li><strong>Immediate availability</strong></li></ul>", src:"profile.md · experience" },
+    fr:{ html:"<p>Plusieurs raisons plaident en faveur du recrutement de Zaineb :</p><ul><li><strong>Expertise de bout en bout</strong> — de l'analyse du besoin métier jusqu'à la mise en production</li><li>Maîtrise transverse : <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Déploiement conteneurisé (Docker/Kubernetes) et cloud (Azure) déjà éprouvé en entreprise</li><li>3 stages, dont un stage de fin d'études en France, une 3ᵉ place au concours TechX 2025 et une 2ᵉ place à la Nuit de l'IA 2025</li><li><strong>Disponibilité immédiate</strong></li></ul>", src:"profil.md · expérience" },
+    en:{ html:"<p>Several reasons make a strong case for hiring Zaineb:</p><ul><li><strong>End-to-end expertise</strong> — from business-need analysis through to production</li><li>Cross-cutting skills: <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Proven containerized (Docker/Kubernetes) and cloud (Azure) deployment experience in industry</li><li>3 internships, including a final-year one in France, plus 3rd place at TechX 2025 and 2nd place at Nuit de l'IA 2025</li><li><strong>Immediate availability</strong></li></ul>", src:"profile.md · experience" },
     followups:{ fr:['Comment la contacter ?','Voir ses projets'], en:['How to contact her?','See her projects'] } },
 
   { id:'langues', terms:['langue','langues','français','anglais','arabe','parle','delf','b2','niveau','language','languages','french','english','arabic','speak','level'],
@@ -1122,8 +1134,8 @@ const PROFILE = [
 
   // ---- Chunk catalogue : ne répond QUE si aucune correspondance spécifique n'est trouvée ----
   { id:'projets', general:true, terms:['projet','projets','réalisation','portfolio','github','combien de projets','project','projects','how many projects'],
-    fr:{ html:"<p>Le portfolio de Zaineb compte <strong>7 projets académiques et personnels</strong> :</p><ul><li>Pipeline MLOps reproductible (Docker/Kubernetes)</li><li>Reconnaissance faciale pour recommandations cosmétiques</li><li>Suivi de santé mentale en entreprise par IA agentique (Azure)</li><li>Prédiction des blessures sportives — 🏆 3ᵉ place TechX 2025</li><li>Application microservices avec LLaMA</li><li>Système RAG adaptatif multi-bases avec Mistral et Qdrant</li><li>Analyse et prédiction de la douleur néphritique (PFA 2)</li></ul>", src:"projets" },
-    en:{ html:"<p>Zaineb's portfolio includes <strong>7 academic and personal projects</strong>:</p><ul><li>Reproducible MLOps pipeline (Docker/Kubernetes)</li><li>Facial recognition for cosmetic recommendations</li><li>Agentic-AI workplace mental health monitoring (Azure)</li><li>Sports injury prediction — 🏆 3rd place at TechX 2025</li><li>Microservices application with LLaMA</li><li>Adaptive multi-knowledge-base RAG system with Mistral and Qdrant</li><li>Nephritic colic pain analysis and prediction (PFA 2)</li></ul>", src:"projects" },
+    fr:{ html:"<p>Le portfolio de Zaineb compte <strong>8 projets académiques et personnels</strong> :</p><ul><li>Pipeline MLOps reproductible (Docker/Kubernetes)</li><li>Reconnaissance faciale pour recommandations cosmétiques</li><li>Suivi de santé mentale en entreprise par IA agentique (Azure)</li><li>Prédiction des blessures sportives — 🏆 3ᵉ place TechX 2025</li><li>Application microservices avec LLaMA</li><li>Système RAG adaptatif multi-bases avec Mistral et Qdrant</li><li>Rafiq IA — assistant génératif LLaMA/RAG/MongoDB — 🏆 2ᵉ place Nuit de l'IA 2025</li><li>Analyse et prédiction de la douleur néphritique (PFA 2)</li></ul>", src:"projets" },
+    en:{ html:"<p>Zaineb's portfolio includes <strong>8 academic and personal projects</strong>:</p><ul><li>Reproducible MLOps pipeline (Docker/Kubernetes)</li><li>Facial recognition for cosmetic recommendations</li><li>Agentic-AI workplace mental health monitoring (Azure)</li><li>Sports injury prediction — 🏆 3rd place at TechX 2025</li><li>Microservices application with LLaMA</li><li>Adaptive multi-knowledge-base RAG system with Mistral and Qdrant</li><li>Rafiq IA — generative AI assistant with LLaMA/RAG/MongoDB — 🏆 2nd place at Nuit de l'IA 2025</li><li>Nephritic colic pain analysis and prediction (PFA 2)</li></ul>", src:"projects" },
     followups:{ fr:['Projets RAG / LLM','Projet primé TechX'], en:['RAG / LLM projects','Award-winning TechX project'] } },
 
   // ---- Chunks spécifiques : un par projet, pour des réponses ciblées ----
@@ -1155,6 +1167,11 @@ const PROFILE = [
   { id:'projet_rag', terms:['rag','llm','mistral','qdrant','adaptatif','multi-bases','multi bases','base de connaissances','vectoriel','vectorielle','recherche sémantique','semantic search','knowledge base','embedding','embeddings'],
     fr:{ html:"<p><strong>Système RAG adaptatif multi-bases de connaissances</strong></p><ul><li>Architecture RAG s'adaptant dynamiquement à une nouvelle base de connaissances à chaque utilisation</li><li>LLM Mistral intégré pour générer des réponses contextualisées à partir des documents récupérés</li><li>Indexation et recherche sémantique vectorielle via Qdrant pour une récupération rapide et pertinente</li></ul>", src:"projet — RAG adaptatif (Mistral / Qdrant)" },
     en:{ html:"<p><strong>Adaptive Multi-Knowledge-Base RAG System</strong></p><ul><li>RAG architecture dynamically adapting to a new knowledge base on each use</li><li>Integrated Mistral LLM to generate context-aware answers from retrieved documents</li><li>Vector-based semantic indexing and search via Qdrant for fast, relevant retrieval</li></ul>", src:"project — Adaptive RAG (Mistral / Qdrant)" },
+    followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
+
+  { id:'projet_rafiq', terms:['rafiq','llama','mongodb','ia generative','generative ai','ia générative','nuit de l\'ia','nuit ia','hackathon'],
+    fr:{ html:"<p><strong>🏆 Rafiq IA — 2ᵉ place au hackathon Nuit de l'IA 2025</strong></p><ul><li>Assistant conversationnel basé sur l'IA générative, combinant LLM (LLaMA) et architecture RAG</li><li>Base de données MongoDB pour la persistance des documents, conversations et connaissances</li></ul>", src:"projet — Rafiq IA (primé, Nuit de l'IA 2025)" },
+    en:{ html:"<p><strong>🏆 Rafiq IA — 2nd place at the Nuit de l'IA 2025 hackathon</strong></p><ul><li>Conversational assistant based on generative AI, combining an LLM (LLaMA) and a RAG architecture</li><li>MongoDB database for persisting documents, conversations and knowledge</li></ul>", src:"project — Rafiq IA (award-winning, Nuit de l'IA 2025)" },
     followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
 
   { id:'projet_nephritic', terms:['néphritique','colique','douleur','médical','antalgique','pfa 2','pfa2','nephritic','colic','pain','medical','clinique','clinical'],
