@@ -143,11 +143,12 @@
   .hero-desc{max-width:640px; font-size:17px; color:var(--text-dim); margin-bottom:36px;}
   .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:56px;}
 
-  .metric-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--border); box-shadow:var(--shadow-card);}
+  .metric-strip{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--border); box-shadow:var(--shadow-card);}
   .metric{background:var(--surface); padding:22px 18px; transition:background .3s var(--ease);}
   .metric:hover{background:var(--surface-2);}
   .metric .v{font-family:var(--display); font-size:28px; font-weight:800; background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
   .metric .l{font-family:var(--mono); font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.08em; margin-top:4px;}
+  @media (max-width:900px){.metric-strip{grid-template-columns:repeat(3,1fr);}}
   @media (max-width:700px){.metric-strip{grid-template-columns:repeat(2,1fr);}}
 
   section{padding:92px 0; position:relative; border-top:1px solid var(--border-soft);}
@@ -561,6 +562,7 @@
       <div class="metric"><div class="v" data-count="3">0</div><div class="l" data-fr="stages IA & data" data-en="AI & data internships">stages IA & data</div></div>
       <div class="metric"><div class="v" data-count="10" data-suffix="+">0</div><div class="l" data-fr="certifications" data-en="certifications">certifications</div></div>
       <div class="metric"><div class="v" data-fr="3e" data-en="3rd">3e</div><div class="l" data-fr="place — TechX 2025" data-en="place — TechX 2025">place — TechX 2025</div></div>
+      <div class="metric"><div class="v" data-fr="2e" data-en="2nd">2e</div><div class="l" data-fr="place — Nuit de l'IA 2025" data-en="place — Nuit de l'IA 2025">place — Nuit de l'IA 2025</div></div>
     </div>
   </section>
 
