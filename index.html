@@ -1084,11 +1084,15 @@ const EN_STOP = new Set([
 
 const STOP = new Set([...FR_STOP, ...EN_STOP]);
 
+// ===== Suppression des accents (pour un matching FR/EN robuste, insensible aux accents) =====
+function stripAccents(str){
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
 // ===== Tokenisation =====
 function tokenize(text){
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9àâäçéèêëîïôöûùüÿœæ\-']/g, ' ')
+  return stripAccents(text.toLowerCase())
+    .replace(/[^a-z0-9\-']/g, ' ')
     .split(/\s+/)
     .filter(t => t.length > 1 && !STOP.has(t));
 }
@@ -1097,6 +1101,34 @@ function tokenize(text){
 function stem(word){
   if(word.length > 4 && word.endsWith('s') && !word.endsWith('ss')) return word.slice(0, -1);
   return word;
+}
+
+// ===== Dictionnaire de synonymes / variantes morphologiques =====
+// Permet de reconnaître qu'un adjectif ("compétente", "competent", "skilled"),
+// un nom ("compétence"), ou une expression équivalente en FR/EN renvoient
+// tous vers le même concept-clé utilisé dans la base de connaissances.
+const SYNONYM_MAP = {
+  // compétent / compétence (FR + EN + variantes de genre/nombre)
+  'competent':'competence','competente':'competence','competents':'competence','competentes':'competence',
+  'competency':'competence','competencies':'competence',
+  // qualifié / qualified
+  'qualifie':'competence','qualifiee':'competence','qualifies':'competence','qualifiees':'competence','qualified':'competence',
+  // capable / capacite
+  'capable':'competence','capables':'competence','capacite':'competence','capacites':'competence','capability':'competence','capabilities':'competence',
+  // habile / skilled / proficient
+  'habile':'competence','habilite':'competence','skilled':'competence','proficient':'competence','proficiency':'competence',
+  'expert':'competence','experte':'competence','experts':'competence','expertes':'competence','expertise':'competence',
+  'maitrise':'competence','maitrises':'competence','maitrisee':'competence',
+  'apte':'competence','aptitude':'competence','aptitudes':'competence',
+  'talentueux':'competence','talentueuse':'competence','talented':'competence','talent':'competence',
+  'bon':'competence','bonne':'competence','good':'competence','great':'competence','excellent':'competence','excellente':'competence','strong':'competence',
+  // savoir-faire
+  'savoir-faire':'competence','know-how':'competence','knowhow':'competence'
+};
+
+function normalizeToken(word){
+  const s = stem(word);
+  return SYNONYM_MAP[s] || s;
 }
 
 // ---------- Base de connaissances (chaque section = 1 chunk RAG) ----------
@@ -1119,7 +1151,7 @@ const PROFILE = [
     en:{ html:"<p>Here are the quickest ways to reach Zaineb:</p><ul><li>📧 Email: <strong>benfadhelzaineb1@gmail.com</strong></li><li>💬 WhatsApp: <strong>+216 99 576 809</strong></li><li>🔗 LinkedIn: linkedin.com/in/zaineb-ben-fadhl</li></ul>", src:"contact" },
     followups:{ fr:['Disponibilité'], en:['Availability'] } },
 
-  { id:'pourquoi', terms:['pourquoi','recruter','embaucher','atouts','forces','qualites','qualités','valeur','différence','unique','choisir','avantage','why','hire','strengths','value','choose'],
+  { id:'pourquoi', terms:['pourquoi','recruter','embaucher','atouts','forces','qualites','qualités','valeur','différence','unique','choisir','avantage','why','hire','strengths','value','choose','competente','competent','qualifiee','qualified'],
     fr:{ html:"<p>Plusieurs raisons plaident en faveur du recrutement de Zaineb :</p><ul><li><strong>Expertise de bout en bout</strong> — de l'analyse du besoin métier jusqu'à la mise en production</li><li>Maîtrise transverse : <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Déploiement conteneurisé (Docker/Kubernetes) et cloud (Azure) déjà éprouvé en entreprise</li><li>3 stages, dont un stage de fin d'études en France, une 3ᵉ place au concours TechX 2025 et une 2ᵉ place à la Nuit de l'IA 2025</li><li><strong>Disponibilité immédiate</strong></li></ul>", src:"profil.md · expérience" },
     en:{ html:"<p>Several reasons make a strong case for hiring Zaineb:</p><ul><li><strong>End-to-end expertise</strong> — from business-need analysis through to production</li><li>Cross-cutting skills: <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Proven containerized (Docker/Kubernetes) and cloud (Azure) deployment experience in industry</li><li>3 internships, including a final-year one in France, plus 3rd place at TechX 2025 and 2nd place at Nuit de l'IA 2025</li><li><strong>Immediate availability</strong></li></ul>", src:"profile.md · experience" },
     followups:{ fr:['Comment la contacter ?','Voir ses projets'], en:['How to contact her?','See her projects'] } },
@@ -1154,9 +1186,10 @@ const PROFILE = [
     en:{ html:"<ul><li><strong>Engineering degree in Computer Science</strong>, Data Science specialization — Polytechnique Sousse (2023–2026)</li><li>Preparatory cycle, Physics-Chemistry track — IPEI Kairouan (2021–2023)</li></ul>", src:"education" },
     followups:{ fr:['Ses certifications'], en:['Her certifications'] } },
 
-  { id:'competences', terms:['compétence','compétences','langage','stack','outil','framework','technologie','connaissance','skill','skills','tools','technology'],
-    fr:{ html:"<p>Sa boîte à outils technique couvre l'ensemble de la chaîne IA :</p><ul><li><strong>Langages & outils</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>Spécialisations IA</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud</strong> — Azure</li></ul>", src:"compétences" },
-    en:{ html:"<p>Her technical toolkit spans the full AI chain:</p><ul><li><strong>Languages & tools</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>AI specializations</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud</strong> — Azure</li></ul>", src:"skills" },
+  { id:'competences', terms:['compétence','compétences','langage','stack','outil','framework','technologie','connaissance','skill','skills','tools','technology',
+      'compétente','compétent','competent','competente','qualifiee','qualified','capable','skilled','maitrise','expertise','apte','talentueuse','competences techniques','technical skills'],
+    fr:{ html:"<p>Oui — Zaineb est <strong>compétente</strong> et couvre l'ensemble de la chaîne IA de bout en bout. Sa boîte à outils technique inclut :</p><ul><li><strong>Langages & outils</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>Spécialisations IA</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud</strong> — Azure</li></ul><p>Cette expertise est confirmée par 3 stages, 8 projets déployés et plus de 10 certifications.</p>", src:"compétences" },
+    en:{ html:"<p>Yes — Zaineb is <strong>competent and skilled</strong>, covering the full AI chain end-to-end. Her technical toolkit includes:</p><ul><li><strong>Languages & tools</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>AI specializations</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud</strong> — Azure</li></ul><p>This expertise is backed by 3 internships, 8 deployed projects, and 10+ certifications.</p>", src:"skills" },
     followups:{ fr:['Voir ses projets','Ses certifications'], en:['See her projects','Her certifications'] } },
 
   { id:'kubernetes_azure', terms:['kubernetes','docker','conteneur','conteneurisation','azure','cloud','déploiement','production','container','deployment'],
@@ -1212,11 +1245,11 @@ const PROFILE = [
     followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } }
 ];
 
-// Précalcul (une seule fois) des mots-clés de chaque section, tokenisés et stemmés
-// via le même pipeline que les questions, pour un matching cohérent.
+// Précalcul (une seule fois) des mots-clés de chaque section, tokenisés, stemmés
+// ET normalisés par synonymes, via le même pipeline que les questions, pour un matching cohérent.
 PROFILE.forEach(section => {
   section._termWords = section.terms.map(term => {
-    const words = tokenize(term).map(stem);
+    const words = tokenize(term).map(normalizeToken);
     return { words, multi: words.length > 1 };
   }).filter(t => t.words.length > 0);
 });
@@ -1244,9 +1277,9 @@ function matchSmallTalk(question){
   return null;
 }
 
-// ---------- Retrieval : matching exact par mot + bonus expressions + seuil de confiance ----------
+// ---------- Retrieval : matching exact par mot (avec normalisation synonymes) + bonus expressions + seuil de confiance ----------
 function findBestSections(question){
-  const tokens = tokenize(question).map(stem);
+  const tokens = tokenize(question).map(normalizeToken);
   if(tokens.length === 0) return [];
   const tokenSet = new Set(tokens);
 
@@ -1254,7 +1287,7 @@ function findBestSections(question){
     let score = 0;
     for(const termInfo of section._termWords){
       if(!termInfo.multi){
-        // Terme = un seul mot → correspondance EXACTE uniquement (fini le "includes" libre)
+        // Terme = un seul mot → correspondance EXACTE (après normalisation synonymes)
         if(tokenSet.has(termInfo.words[0])) score += 5;
       } else {
         // Terme = expression → bonus fort si tous les mots-clés sont présents,
