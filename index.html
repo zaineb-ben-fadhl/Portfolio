@@ -91,6 +91,7 @@
   .skill-grid.in .skill-card:nth-child(3){animation-delay:.14s;}
   .skill-grid.in .skill-card:nth-child(4){animation-delay:.21s;}
   .skill-grid.in .skill-card:nth-child(5){animation-delay:.28s;}
+  .skill-grid.in .skill-card:nth-child(6){animation-delay:.35s;}
   .grid3.in .panel{animation:riseIn .6s var(--ease) backwards;}
   .grid3.in .panel:nth-child(2){animation-delay:.08s;}
   .grid3.in .panel:nth-child(3){animation-delay:.16s;}
@@ -376,6 +377,16 @@
     color:var(--text);
     background:rgba(139,124,246,.08);
   }
+  .skill-card:nth-child(6){
+    --card-accent:linear-gradient(120deg, #8fdb4f, #59a72e);
+    --card-accent-color:#8fdb4f;
+    --progress:68%;
+  }
+  .skill-card:nth-child(6) .tag:hover{
+    border-color:#8fdb4f;
+    color:var(--text);
+    background:rgba(143,219,79,.08);
+  }
 
   .grid3{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
   .grid3 .cert-panel{grid-column:1 / -1;}
@@ -611,12 +622,12 @@
           <div class="readme-text">
             <div class="profil-name">Zaineb Ben Fadhl</div>
             <div class="role-line profil-role"><span id="roleTypedProfil"></span><span class="caret"></span></div>
-            <p data-fr="<strong>Ingénieure diplômée en Intelligence Artificielle et Data Science</strong>, avec une expertise en NLP, LLM et architectures RAG, ainsi qu'en Computer Vision, Machine Learning, Deep Learning et MLOps. Expérience confirmée dans la conception de solutions IA et data de bout en bout : de l'analyse du besoin métier à la mise en production des modèles, incluant le déploiement conteneurisé (Docker, Kubernetes) et cloud (Azure). À la recherche d'un poste d'<strong>Ingénieure IA</strong> ou <strong>Data Scientist</strong>." data-en="<strong>Engineering graduate in Artificial Intelligence and Data Science</strong>, with expertise in NLP, LLM and RAG architectures, as well as Computer Vision, Machine Learning, Deep Learning and MLOps. Proven experience designing end-to-end AI and data solutions: from business-need analysis to model production, including containerized deployment (Docker, Kubernetes) and cloud (Azure). Looking for a position as <strong>AI Engineer</strong> or <strong>Data Scientist</strong>.">
-              <strong>Ingénieure diplômée en Intelligence Artificielle et Data Science</strong>, avec une expertise en NLP, LLM et architectures RAG, ainsi qu'en Computer Vision, Machine Learning, Deep Learning et MLOps. Expérience confirmée dans la conception de solutions IA et data de bout en bout : de l'analyse du besoin métier à la mise en production des modèles, incluant le déploiement conteneurisé (Docker, Kubernetes) et cloud (Azure). À la recherche d'un poste d'<strong>Ingénieure IA</strong> ou <strong>Data Scientist</strong>.
+            <p data-fr="<strong>Ingénieure diplômée en Intelligence Artificielle et Data Science</strong>, avec une expertise en NLP, LLM et architectures RAG, ainsi qu'en Computer Vision, Machine Learning, Deep Learning et MLOps. Expérience confirmée dans la conception de solutions IA et data de bout en bout : de l'analyse du besoin métier à la mise en production des modèles, incluant le déploiement conteneurisé (Docker, Kubernetes), cloud (Azure) et embarqué (Raspberry Pi, NVIDIA Jetson). À la recherche d'un poste d'<strong>Ingénieure IA</strong> ou <strong>Data Scientist</strong>." data-en="<strong>Engineering graduate in Artificial Intelligence and Data Science</strong>, with expertise in NLP, LLM and RAG architectures, as well as Computer Vision, Machine Learning, Deep Learning and MLOps. Proven experience designing end-to-end AI and data solutions: from business-need analysis to model production, including containerized deployment (Docker, Kubernetes), cloud (Azure), and edge/embedded deployment (Raspberry Pi, NVIDIA Jetson). Looking for a position as <strong>AI Engineer</strong> or <strong>Data Scientist</strong>.">
+              <strong>Ingénieure diplômée en Intelligence Artificielle et Data Science</strong>, avec une expertise en NLP, LLM et architectures RAG, ainsi qu'en Computer Vision, Machine Learning, Deep Learning et MLOps. Expérience confirmée dans la conception de solutions IA et data de bout en bout : de l'analyse du besoin métier à la mise en production des modèles, incluant le déploiement conteneurisé (Docker, Kubernetes), cloud (Azure) et embarqué (Raspberry Pi, NVIDIA Jetson). À la recherche d'un poste d'<strong>Ingénieure IA</strong> ou <strong>Data Scientist</strong>.
             </p>
             <div class="readme-chips">
               <span class="tag">NLP</span><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Computer Vision</span>
-              <span class="tag">Deep Learning</span><span class="tag">MLOps</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Azure</span>
+              <span class="tag">Deep Learning</span><span class="tag">MLOps</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Azure</span><span class="tag">Edge AI</span>
             </div>
           </div>
         </div>
@@ -642,11 +653,13 @@
               <li data-fr="Déploiement d'un mécanisme d'amélioration continue par apprentissage par renforcement, intégrant les retours terrain en temps réel" data-en="Deployed a continuous-improvement mechanism using reinforcement learning, integrating real-time field feedback">Déploiement d'un mécanisme d'amélioration continue par apprentissage par renforcement, intégrant les retours terrain en temps réel</li>
               <li data-fr="Optimisation de l'efficacité d'apprentissage via des techniques d'Active Learning pour prioriser les données les plus informatives" data-en="Optimized learning efficiency using Active Learning techniques to prioritize the most informative data">Optimisation de l'efficacité d'apprentissage via des techniques d'Active Learning pour prioriser les données les plus informatives</li>
               <li data-fr="Accélération de l'adaptation du modèle à de nouvelles actions grâce à des méthodes de Meta-Learning" data-en="Accelerated model adaptation to new actions using Meta-Learning methods">Accélération de l'adaptation du modèle à de nouvelles actions grâce à des méthodes de Meta-Learning</li>
+              <li data-fr="Adaptation et optimisation du modèle pour un déploiement embarqué (pruning, quantization et optimisation d'inférence), permettant une exécution temps réel sur des dispositifs edge tels que Raspberry Pi et NVIDIA Jetson" data-en="Adapted and optimized the model for embedded deployment (pruning, quantization, and inference optimization), enabling real-time execution on edge devices such as Raspberry Pi and NVIDIA Jetson">Adaptation et optimisation du modèle pour un déploiement embarqué (pruning, quantization et optimisation d'inférence), permettant une exécution temps réel sur des dispositifs edge tels que Raspberry Pi et NVIDIA Jetson</li>
               <li data-fr="Architecture de pipelines CI/CD avec suivi de la dérive des données (data drift) via Prometheus et rollback automatique vers une version stable" data-en="Built CI/CD pipelines with data drift monitoring via Prometheus and automatic rollback to a stable version">Architecture de pipelines CI/CD avec suivi de la dérive des données (data drift) via Prometheus et rollback automatique vers une version stable</li>
+              <li data-fr="Déploiement et mise à disposition du modèle via Microsoft Azure et Hugging Face, pour un hébergement scalable et une distribution simplifiée" data-en="Deployed and served the model using Microsoft Azure and Hugging Face, enabling scalable hosting and streamlined model distribution">Déploiement et mise à disposition du modèle via Microsoft Azure et Hugging Face, pour un hébergement scalable et une distribution simplifiée</li>
             </ul>
             <div class="tags">
               <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">OpenCV</span>
-              <span class="tag">Reinforcement Learning</span><span class="tag">Active Learning</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Prometheus</span>
+              <span class="tag">Reinforcement Learning</span><span class="tag">Active Learning</span><span class="tag">Pruning & Quantization</span><span class="tag">Raspberry Pi</span><span class="tag">NVIDIA Jetson</span><span class="tag">MLOps</span><span class="tag">CI/CD</span><span class="tag">Prometheus</span><span class="tag">Azure</span><span class="tag">Hugging Face</span>
             </div>
           </div>
         </div>
@@ -733,11 +746,19 @@
         </div>
         <div class="skill-card">
           <div class="sk-header">
-            <div class="sk-head">Cloud</div>
-            <span class="sk-count">Azure</span>
+            <div class="sk-head">Cloud & Storage</div>
+            <span class="sk-count">4 items</span>
           </div>
           <div class="sk-progress-track"><div class="sk-progress-fill"></div></div>
-          <div class="tags"><span class="tag">Azure</span></div>
+          <div class="tags"><span class="tag">Azure</span><span class="tag">AWS S3</span><span class="tag">MinIO</span><span class="tag">Hugging Face</span></div>
+        </div>
+        <div class="skill-card">
+          <div class="sk-header">
+            <div class="sk-head" data-fr="Edge & Embarqué" data-en="Edge & Embedded">Edge & Embarqué</div>
+            <span class="sk-count">5 items</span>
+          </div>
+          <div class="sk-progress-track"><div class="sk-progress-fill"></div></div>
+          <div class="tags"><span class="tag">NVIDIA Jetson</span><span class="tag">Raspberry Pi</span><span class="tag">Model Pruning</span><span class="tag">Quantization</span><span class="tag">Inference Optimization</span></div>
         </div>
       </div>
     </div>
@@ -920,12 +941,14 @@ const projects = [
     bullets:{
       fr:['Workflow MLOps complet couvrant versioning, orchestration et déploiement : Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna',
           'Conteneurisation et orchestration des services via Docker et Kubernetes pour un pipeline reproductible de bout en bout',
-          "API d'inférence exposée via Docker Compose, déployée sur cluster Kubernetes avec CI/CD et rollback automatique en cas de dérive détectée (Prometheus)"],
+          "API d'inférence exposée via Docker Compose, déployée sur cluster Kubernetes avec CI/CD et rollback automatique en cas de dérive détectée (Prometheus)",
+          "Déploiement du pipeline sur Microsoft Azure, avec artefacts de modèles et jeux de données répartis entre AWS S3 et MinIO pour un stockage objet flexible et agnostique du fournisseur"],
       en:['End-to-end MLOps workflow covering versioning, orchestration and deployment: Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna',
           'Containerized and orchestrated services with Docker and Kubernetes for a fully reproducible pipeline',
-          'Inference API exposed via Docker Compose, deployed on a Kubernetes cluster with CI/CD and automatic rollback on detected drift (Prometheus)']
+          'Inference API exposed via Docker Compose, deployed on a Kubernetes cluster with CI/CD and automatic rollback on detected drift (Prometheus)',
+          'Deployed the pipeline on Microsoft Azure, with model artifacts and datasets stored across AWS S3 and MinIO for flexible, provider-agnostic object storage']
     },
-    tags:['Git','Docker','Kubernetes','DVC','MLflow','ZenML','Optuna','CI/CD','Prometheus','Grafana'] },
+    tags:['Git','Docker','Kubernetes','DVC','MLflow','ZenML','Optuna','CI/CD','Prometheus','Grafana','Azure','AWS S3','MinIO'] },
   { id:'cosmetic', win:false,
     badge:{fr:'Personnel', en:'Personal'},
     title:{fr:'Reconnaissance faciale pour recommandations cosmétiques', en:'Facial Recognition for Cosmetic Recommendations'},
@@ -1084,6 +1107,34 @@ const EN_STOP = new Set([
 
 const STOP = new Set([...FR_STOP, ...EN_STOP]);
 
+// ===== Détection de la langue de la question (indépendante du toggle FR/EN de la page) =====
+// Signaux utilisés : accents français, contractions françaises (qu', c', l', d'...),
+// et mots-outils propres à chaque langue (en excluant les mots ambigus communs aux deux listes).
+const FR_ONLY_SIGNAL = new Set([...FR_STOP].filter(w => !EN_STOP.has(w) && w.length > 1));
+const EN_ONLY_SIGNAL = new Set([...EN_STOP].filter(w => !FR_STOP.has(w) && w.length > 1));
+const FR_ACCENT_RE = /[àâäéèêëîïôöùûüçœæ]/i;
+const FR_CONTRACTION_RE = /\b[cdjlmnstCDJLMNST]'[a-zàâäéèêëîïôöùûüç]/;
+
+function detectLang(text, fallbackLang){
+  if(!text) return fallbackLang;
+  const raw = text.toLowerCase();
+  let frScore = 0, enScore = 0;
+
+  if(FR_ACCENT_RE.test(raw)) frScore += 3;
+  if(FR_CONTRACTION_RE.test(text)) frScore += 2;
+
+  const rawWords = raw.replace(/[^a-zàâäéèêëîïôöùûüçœæ0-9\-'\s]/g, ' ').split(/\s+/).filter(Boolean);
+  rawWords.forEach(w=>{
+    const clean = w.replace(/^'+|'+$/g, '');
+    if(FR_ONLY_SIGNAL.has(clean)) frScore += 1;
+    if(EN_ONLY_SIGNAL.has(clean)) enScore += 1;
+  });
+
+  // Signal fort et univoque : mots anglais type "what/how/is/are/the" sans accent français.
+  if(frScore === 0 && enScore === 0) return fallbackLang; // question trop courte ou neutre (ex: "RAG", "MLOps") -> on garde la langue de la page
+  return frScore >= enScore ? 'fr' : 'en';
+}
+
 // ===== Suppression des accents (pour un matching FR/EN robuste, insensible aux accents) =====
 function stripAccents(str){
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -1137,8 +1188,8 @@ function normalizeToken(word){
 // de tout citer quand la question porte sur un seul projet.
 const PROFILE = [
   { id:'synthese', terms:['profil','synthèse','présentation','qui est',"c'est quoi",'parcours','ingénieure','ingénieur','data scientist','présente','résumé','à propos','profile','summary','who is','background','engineer'],
-    fr:{ html:"<p>Zaineb Ben Fadhl est <strong>ingénieure diplômée en Intelligence Artificielle et Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Spécialisée en <strong>NLP, LLM et architectures RAG</strong>, ainsi qu'en <strong>Computer Vision, Deep Learning et MLOps</strong></li><li>Expérience confirmée du déploiement conteneurisé (<strong>Docker, Kubernetes</strong>) et cloud (<strong>Azure</strong>)</li><li>3 stages, 8 projets déployés, 3ᵉ place au concours TechX 2025 et 2ᵉ place à la Nuit de l'IA 2025</li></ul>", src:"profil.md" },
-    en:{ html:"<p>Zaineb Ben Fadhl is an <strong>engineering graduate in Artificial Intelligence and Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Specialized in <strong>NLP, LLM and RAG architectures</strong>, as well as <strong>Computer Vision, Deep Learning and MLOps</strong></li><li>Proven experience with containerized (<strong>Docker, Kubernetes</strong>) and cloud (<strong>Azure</strong>) deployment</li><li>3 internships, 8 deployed projects, 3rd place at TechX 2025 and 2nd place at Nuit de l'IA 2025</li></ul>", src:"profile.md" },
+    fr:{ html:"<p>Zaineb Ben Fadhl est <strong>ingénieure diplômée en Intelligence Artificielle et Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Spécialisée en <strong>NLP, LLM et architectures RAG</strong>, ainsi qu'en <strong>Computer Vision, Deep Learning et MLOps</strong></li><li>Expérience confirmée du déploiement conteneurisé (<strong>Docker, Kubernetes</strong>), cloud (<strong>Azure</strong>) et embarqué (<strong>Raspberry Pi, NVIDIA Jetson</strong>)</li><li>3 stages, 8 projets déployés, 3ᵉ place au concours TechX 2025 et 2ᵉ place à la Nuit de l'IA 2025</li></ul>", src:"profil.md" },
+    en:{ html:"<p>Zaineb Ben Fadhl is an <strong>engineering graduate in Artificial Intelligence and Data Science</strong> (Polytechnique Sousse, 2023–2026).</p><ul><li>Specialized in <strong>NLP, LLM and RAG architectures</strong>, as well as <strong>Computer Vision, Deep Learning and MLOps</strong></li><li>Proven experience with containerized (<strong>Docker, Kubernetes</strong>), cloud (<strong>Azure</strong>), and edge (<strong>Raspberry Pi, NVIDIA Jetson</strong>) deployment</li><li>3 internships, 8 deployed projects, 3rd place at TechX 2025 and 2nd place at Nuit de l'IA 2025</li></ul>", src:"profile.md" },
     followups:{ fr:['Pourquoi la recruter ?','Disponibilité'], en:['Why hire her?','Availability'] } },
 
   { id:'dispo', terms:['disponible','disponibilité','immédiatement','dispo','urgence','rapidement','commencer','quand','préavis','délai','libre','available','availability','immediately','start','notice'],
@@ -1152,8 +1203,8 @@ const PROFILE = [
     followups:{ fr:['Disponibilité'], en:['Availability'] } },
 
   { id:'pourquoi', terms:['pourquoi','recruter','embaucher','atouts','forces','qualites','qualités','valeur','différence','unique','choisir','avantage','why','hire','strengths','value','choose','competente','competent','qualifiee','qualified'],
-    fr:{ html:"<p>Plusieurs raisons plaident en faveur du recrutement de Zaineb :</p><ul><li><strong>Expertise de bout en bout</strong> — de l'analyse du besoin métier jusqu'à la mise en production</li><li>Maîtrise transverse : <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Déploiement conteneurisé (Docker/Kubernetes) et cloud (Azure) déjà éprouvé en entreprise</li><li>3 stages, dont un stage de fin d'études en France, une 3ᵉ place au concours TechX 2025 et une 2ᵉ place à la Nuit de l'IA 2025</li><li><strong>Disponibilité immédiate</strong></li></ul>", src:"profil.md · expérience" },
-    en:{ html:"<p>Several reasons make a strong case for hiring Zaineb:</p><ul><li><strong>End-to-end expertise</strong> — from business-need analysis through to production</li><li>Cross-cutting skills: <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Proven containerized (Docker/Kubernetes) and cloud (Azure) deployment experience in industry</li><li>3 internships, including a final-year one in France, plus 3rd place at TechX 2025 and 2nd place at Nuit de l'IA 2025</li><li><strong>Immediate availability</strong></li></ul>", src:"profile.md · experience" },
+    fr:{ html:"<p>Plusieurs raisons plaident en faveur du recrutement de Zaineb :</p><ul><li><strong>Expertise de bout en bout</strong> — de l'analyse du besoin métier jusqu'à la mise en production</li><li>Maîtrise transverse : <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Déploiement conteneurisé (Docker/Kubernetes), cloud (Azure) et embarqué (Raspberry Pi, NVIDIA Jetson) déjà éprouvé en entreprise</li><li>3 stages, dont un stage de fin d'études en France, une 3ᵉ place au concours TechX 2025 et une 2ᵉ place à la Nuit de l'IA 2025</li><li><strong>Disponibilité immédiate</strong></li></ul>", src:"profil.md · expérience" },
+    en:{ html:"<p>Several reasons make a strong case for hiring Zaineb:</p><ul><li><strong>End-to-end expertise</strong> — from business-need analysis through to production</li><li>Cross-cutting skills: <strong>NLP, LLM, RAG, Computer Vision, Reinforcement Learning, MLOps, Agentic AI</strong></li><li>Proven containerized (Docker/Kubernetes), cloud (Azure), and edge (Raspberry Pi, NVIDIA Jetson) deployment experience in industry</li><li>3 internships, including a final-year one in France, plus 3rd place at TechX 2025 and 2nd place at Nuit de l'IA 2025</li><li><strong>Immediate availability</strong></li></ul>", src:"profile.md · experience" },
     followups:{ fr:['Comment la contacter ?','Voir ses projets'], en:['How to contact her?','See her projects'] } },
 
   { id:'langues', terms:['langue','langues','français','anglais','arabe','parle','delf','b2','niveau','language','languages','french','english','arabic','speak','level'],
@@ -1166,10 +1217,10 @@ const PROFILE = [
     en:{ html:"<p>Zaineb has completed <strong>3 internships</strong>, with progressively increasing responsibility:</p><ul><li><strong>AI Engineer</strong> — Anavid France (Jan–May 2026)</li><li><strong>BI Developer</strong> — LEONI Sousse (Jun–Jul 2025)</li><li><strong>Data Analyst</strong> — ONRTECH France (Jun–Sep 2024)</li></ul>", src:"professional experience" },
     followups:{ fr:['Détails du stage Anavid','Détails du stage LEONI'], en:['Anavid internship details','LEONI internship details'] } },
 
-  { id:'anavid', terms:['anavid','pfe','fin d\'études','stage anavid','détection d\'actions','vol','vidéo','reinforcement learning','apprentissage par renforcement','active learning','meta-learning','prometheus','ci/cd anavid','final year','theft','video','action detection'],
-    fr:{ html:"<p>Lors de son <strong>stage de fin d'études</strong> chez Anavid France, Zaineb a :</p><ul><li>Conçu et entraîné un système de détection d'actions par deep learning, spécialisé dans la détection de vols sur flux vidéo de surveillance</li><li>Déployé un mécanisme d'amélioration continue par <strong>Reinforcement Learning</strong>, intégrant les retours terrain en temps réel</li><li>Optimisé l'efficacité d'apprentissage via l'<strong>Active Learning</strong> et accéléré l'adaptation à de nouvelles actions via le <strong>Meta-Learning</strong></li><li>Construit des pipelines CI/CD avec suivi de dérive (Prometheus) et rollback automatique</li></ul><p>Stack technique : Python, PyTorch, OpenCV.</p>", src:"expérience — Anavid France" },
-    en:{ html:"<p>During her <strong>final-year internship</strong> at Anavid France, Zaineb:</p><ul><li>Designed and trained a deep learning action-detection system specialized in theft detection on surveillance video streams</li><li>Deployed a continuous-improvement mechanism using <strong>Reinforcement Learning</strong>, integrating real-time field feedback</li><li>Improved learning efficiency via <strong>Active Learning</strong> and accelerated adaptation to new actions via <strong>Meta-Learning</strong></li><li>Built CI/CD pipelines with drift monitoring (Prometheus) and automatic rollback</li></ul><p>Tech stack: Python, PyTorch, OpenCV.</p>", src:"experience — Anavid France" },
-    followups:{ fr:['Ses compétences MLOps'], en:['Her MLOps skills'] } },
+  { id:'anavid', terms:['anavid','pfe','fin d\'études','stage anavid','détection d\'actions','vol','vidéo','reinforcement learning','apprentissage par renforcement','active learning','meta-learning','prometheus','ci/cd anavid','final year','theft','video','action detection','edge','raspberry','jetson','pruning','quantization','embarque','embarqué','embedded','huggingface','hugging face'],
+    fr:{ html:"<p>Lors de son <strong>stage de fin d'études</strong> chez Anavid France, Zaineb a :</p><ul><li>Conçu et entraîné un système de détection d'actions par deep learning, spécialisé dans la détection de vols sur flux vidéo de surveillance</li><li>Déployé un mécanisme d'amélioration continue par <strong>Reinforcement Learning</strong>, intégrant les retours terrain en temps réel</li><li>Optimisé l'efficacité d'apprentissage via l'<strong>Active Learning</strong> et accéléré l'adaptation à de nouvelles actions via le <strong>Meta-Learning</strong></li><li>Adapté et optimisé le modèle pour un déploiement embarqué (<strong>pruning, quantization</strong>), permettant une exécution temps réel sur <strong>Raspberry Pi</strong> et <strong>NVIDIA Jetson</strong></li><li>Construit des pipelines CI/CD avec suivi de dérive (Prometheus) et rollback automatique</li><li>Déployé et servi le modèle via <strong>Microsoft Azure</strong> et <strong>Hugging Face</strong></li></ul><p>Stack technique : Python, PyTorch, OpenCV.</p>", src:"expérience — Anavid France" },
+    en:{ html:"<p>During her <strong>final-year internship</strong> at Anavid France, Zaineb:</p><ul><li>Designed and trained a deep learning action-detection system specialized in theft detection on surveillance video streams</li><li>Deployed a continuous-improvement mechanism using <strong>Reinforcement Learning</strong>, integrating real-time field feedback</li><li>Improved learning efficiency via <strong>Active Learning</strong> and accelerated adaptation to new actions via <strong>Meta-Learning</strong></li><li>Adapted and optimized the model for embedded deployment (<strong>pruning, quantization</strong>), enabling real-time execution on <strong>Raspberry Pi</strong> and <strong>NVIDIA Jetson</strong></li><li>Built CI/CD pipelines with drift monitoring (Prometheus) and automatic rollback</li><li>Deployed and served the model using <strong>Microsoft Azure</strong> and <strong>Hugging Face</strong></li></ul><p>Tech stack: Python, PyTorch, OpenCV.</p>", src:"experience — Anavid France" },
+    followups:{ fr:['Ses compétences MLOps','Ses compétences Edge AI'], en:['Her MLOps skills','Her Edge AI skills'] } },
 
   { id:'leoni', terms:['leoni','power bi','business intelligence','dashboard','tableau de bord','react','stage leoni'],
     fr:{ html:"<p>Chez <strong>LEONI Sousse</strong>, Zaineb a :</p><ul><li>Conçu des tableaux de bord Power BI interactifs pour le suivi RH et production, utilisés au quotidien par plus de 50 employés</li><li>Intégré Power BI Embedded au sein d'applications ReactJS</li><li>Automatisé les mises à jour de données SQL et Excel, réduisant les tâches manuelles de reporting</li></ul>", src:"expérience — LEONI Sousse" },
@@ -1188,25 +1239,30 @@ const PROFILE = [
 
   { id:'competences', terms:['compétence','compétences','langage','stack','outil','framework','technologie','connaissance','skill','skills','tools','technology',
       'compétente','compétent','competent','competente','qualifiee','qualified','capable','skilled','maitrise','expertise','apte','talentueuse','competences techniques','technical skills'],
-    fr:{ html:"<p>Oui — Zaineb est <strong>compétente</strong> et couvre l'ensemble de la chaîne IA de bout en bout. Sa boîte à outils technique inclut :</p><ul><li><strong>Langages & outils</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>Spécialisations IA</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud</strong> — Azure</li></ul><p>Cette expertise est confirmée par 3 stages, 8 projets déployés et plus de 10 certifications.</p>", src:"compétences" },
-    en:{ html:"<p>Yes — Zaineb is <strong>competent and skilled</strong>, covering the full AI chain end-to-end. Her technical toolkit includes:</p><ul><li><strong>Languages & tools</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>AI specializations</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud</strong> — Azure</li></ul><p>This expertise is backed by 3 internships, 8 deployed projects, and 10+ certifications.</p>", src:"skills" },
+    fr:{ html:"<p>Oui — Zaineb est <strong>compétente</strong> et couvre l'ensemble de la chaîne IA de bout en bout. Sa boîte à outils technique inclut :</p><ul><li><strong>Langages & outils</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>Spécialisations IA</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud & Storage</strong> — Azure, AWS S3, MinIO, Hugging Face</li><li><strong>Edge & Embarqué</strong> — NVIDIA Jetson, Raspberry Pi, Model Pruning, Quantization, Inference Optimization</li></ul><p>Cette expertise est confirmée par 3 stages, 8 projets déployés et plus de 10 certifications.</p>", src:"compétences" },
+    en:{ html:"<p>Yes — Zaineb is <strong>competent and skilled</strong>, covering the full AI chain end-to-end. Her technical toolkit includes:</p><ul><li><strong>Languages & tools</strong> — Python, R, SQL, PL/SQL, MERN Stack, Git, Docker, Kubernetes, Qdrant</li><li><strong>ML/DL</strong> — PyTorch, TensorFlow, scikit-learn, OpenCV, Keras</li><li><strong>AI specializations</strong> — Computer Vision, Deep Learning, NLP, LLM, RAG, Reinforcement Learning, Agentic AI</li><li><strong>MLOps & Data</strong> — MLflow, DVC, ZenML, CI/CD, Kubernetes, Spark, Power BI</li><li><strong>Cloud & Storage</strong> — Azure, AWS S3, MinIO, Hugging Face</li><li><strong>Edge & Embedded</strong> — NVIDIA Jetson, Raspberry Pi, Model Pruning, Quantization, Inference Optimization</li></ul><p>This expertise is backed by 3 internships, 8 deployed projects, and 10+ certifications.</p>", src:"skills" },
     followups:{ fr:['Voir ses projets','Ses certifications'], en:['See her projects','Her certifications'] } },
 
-  { id:'kubernetes_azure', terms:['kubernetes','docker','conteneur','conteneurisation','azure','cloud','déploiement','production','container','deployment'],
-    fr:{ html:"<p>Zaineb maîtrise le déploiement conteneurisé avec <strong>Docker</strong> et <strong>Kubernetes</strong> (orchestration de clusters, pipelines CI/CD, rollback automatique), ainsi que le cloud <strong>Azure</strong> pour héberger des pipelines MLOps de bout en bout.</p>", src:"compétences · MLOps" },
-    en:{ html:"<p>Zaineb is proficient in containerized deployment with <strong>Docker</strong> and <strong>Kubernetes</strong> (cluster orchestration, CI/CD pipelines, automatic rollback), as well as <strong>Azure</strong> cloud for hosting end-to-end MLOps pipelines.</p>", src:"skills · MLOps" },
+  { id:'kubernetes_azure', terms:['kubernetes','docker','conteneur','conteneurisation','azure','cloud','déploiement','production','container','deployment','minio','s3','huggingface','hugging face'],
+    fr:{ html:"<p>Zaineb maîtrise le déploiement conteneurisé avec <strong>Docker</strong> et <strong>Kubernetes</strong> (orchestration de clusters, pipelines CI/CD, rollback automatique), ainsi que le cloud <strong>Azure</strong>, le stockage objet (<strong>AWS S3, MinIO</strong>) et l'hébergement de modèles via <strong>Hugging Face</strong> pour des pipelines MLOps de bout en bout.</p>", src:"compétences · MLOps" },
+    en:{ html:"<p>Zaineb is proficient in containerized deployment with <strong>Docker</strong> and <strong>Kubernetes</strong> (cluster orchestration, CI/CD pipelines, automatic rollback), as well as <strong>Azure</strong> cloud, object storage (<strong>AWS S3, MinIO</strong>), and model hosting via <strong>Hugging Face</strong> for end-to-end MLOps pipelines.</p>", src:"skills · MLOps" },
+    followups:{ fr:['Détails du stage Anavid'], en:['Anavid internship details'] } },
+
+  { id:'edge_ai', terms:['edge','embarque','embarqué','embedded','raspberry','jetson','pruning','quantization','tensorrt','optimisation d\'inférence','inference optimization','edge ai','edge device'],
+    fr:{ html:"<p>Zaineb a de l'expérience concrète en <strong>déploiement embarqué / Edge AI</strong> :</p><ul><li>Techniques de <strong>pruning</strong> et de <strong>quantization</strong> pour réduire la taille des modèles de deep learning</li><li>Optimisation d'inférence pour l'exécution temps réel sur des dispositifs contraints</li><li>Déploiement effectif sur <strong>Raspberry Pi</strong> et <strong>NVIDIA Jetson</strong> dans le cadre de son stage chez Anavid France</li></ul>", src:"compétences · Edge & Embarqué" },
+    en:{ html:"<p>Zaineb has hands-on experience with <strong>Edge AI / embedded deployment</strong>:</p><ul><li><strong>Pruning</strong> and <strong>quantization</strong> techniques to shrink deep learning models</li><li>Inference optimization for real-time execution on constrained devices</li><li>Actual deployment on <strong>Raspberry Pi</strong> and <strong>NVIDIA Jetson</strong> during her internship at Anavid France</li></ul>", src:"skills · Edge & Embedded" },
     followups:{ fr:['Détails du stage Anavid'], en:['Anavid internship details'] } },
 
   // ---- Chunk catalogue : ne répond QUE si aucune correspondance spécifique n'est trouvée ----
   { id:'projets', general:true, terms:['projet','projets','réalisation','portfolio','github','combien de projets','project','projects','how many projects'],
-    fr:{ html:"<p>Le portfolio de Zaineb compte <strong>8 projets académiques et personnels</strong> :</p><ul><li>Pipeline MLOps reproductible (Docker/Kubernetes)</li><li>Reconnaissance faciale pour recommandations cosmétiques</li><li>Suivi de santé mentale en entreprise par IA agentique (Azure)</li><li>Prédiction des blessures sportives — 🏆 3ᵉ place TechX 2025</li><li>Application microservices avec LLaMA</li><li>Système RAG adaptatif multi-bases avec Mistral et Qdrant</li><li>Rafiq IA — assistant génératif LLaMA/RAG/MongoDB — 🏆 2ᵉ place Nuit de l'IA 2025</li><li>Analyse et prédiction de la douleur néphritique (PFA 2)</li></ul>", src:"projets" },
-    en:{ html:"<p>Zaineb's portfolio includes <strong>8 academic and personal projects</strong>:</p><ul><li>Reproducible MLOps pipeline (Docker/Kubernetes)</li><li>Facial recognition for cosmetic recommendations</li><li>Agentic-AI workplace mental health monitoring (Azure)</li><li>Sports injury prediction — 🏆 3rd place at TechX 2025</li><li>Microservices application with LLaMA</li><li>Adaptive multi-knowledge-base RAG system with Mistral and Qdrant</li><li>Rafiq IA — generative AI assistant with LLaMA/RAG/MongoDB — 🏆 2nd place at Nuit de l'IA 2025</li><li>Nephritic colic pain analysis and prediction (PFA 2)</li></ul>", src:"projects" },
+    fr:{ html:"<p>Le portfolio de Zaineb compte <strong>8 projets académiques et personnels</strong> :</p><ul><li>Pipeline MLOps reproductible (Docker/Kubernetes, Azure, AWS S3, MinIO)</li><li>Reconnaissance faciale pour recommandations cosmétiques</li><li>Suivi de santé mentale en entreprise par IA agentique (Azure)</li><li>Prédiction des blessures sportives — 🏆 3ᵉ place TechX 2025</li><li>Application microservices avec LLaMA</li><li>Système RAG adaptatif multi-bases avec Mistral et Qdrant</li><li>Rafiq IA — assistant génératif LLaMA/RAG/MongoDB — 🏆 2ᵉ place Nuit de l'IA 2025</li><li>Analyse et prédiction de la douleur néphritique (PFA 2)</li></ul>", src:"projets" },
+    en:{ html:"<p>Zaineb's portfolio includes <strong>8 academic and personal projects</strong>:</p><ul><li>Reproducible MLOps pipeline (Docker/Kubernetes, Azure, AWS S3, MinIO)</li><li>Facial recognition for cosmetic recommendations</li><li>Agentic-AI workplace mental health monitoring (Azure)</li><li>Sports injury prediction — 🏆 3rd place at TechX 2025</li><li>Microservices application with LLaMA</li><li>Adaptive multi-knowledge-base RAG system with Mistral and Qdrant</li><li>Rafiq IA — generative AI assistant with LLaMA/RAG/MongoDB — 🏆 2nd place at Nuit de l'IA 2025</li><li>Nephritic colic pain analysis and prediction (PFA 2)</li></ul>", src:"projects" },
     followups:{ fr:['Projets RAG / LLM','Projet primé TechX'], en:['RAG / LLM projects','Award-winning TechX project'] } },
 
   // ---- Chunks spécifiques : un par projet, pour des réponses ciblées ----
-  { id:'projet_mlops', terms:['pipeline mlops','mlops reproductible','dvc','zenml','mlflow','optuna','ci/cd pipeline','reproductible','déployable','grafana'],
-    fr:{ html:"<p><strong>Pipeline MLOps reproductible & déployable</strong></p><ul><li>Workflow MLOps complet couvrant versioning, orchestration et déploiement : Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna</li><li>Conteneurisation et orchestration des services via Docker et Kubernetes pour un pipeline reproductible de bout en bout</li><li>API d'inférence exposée via Docker Compose, déployée sur cluster Kubernetes avec CI/CD et rollback automatique en cas de dérive détectée (Prometheus)</li></ul>", src:"projet — Pipeline MLOps" },
-    en:{ html:"<p><strong>Reproducible & Deployable MLOps Pipeline</strong></p><ul><li>End-to-end MLOps workflow covering versioning, orchestration and deployment: Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna</li><li>Containerized and orchestrated services with Docker and Kubernetes for a fully reproducible pipeline</li><li>Inference API exposed via Docker Compose, deployed on a Kubernetes cluster with CI/CD and automatic rollback on detected drift (Prometheus)</li></ul>", src:"project — MLOps Pipeline" },
+  { id:'projet_mlops', terms:['pipeline mlops','mlops reproductible','dvc','zenml','mlflow','optuna','ci/cd pipeline','reproductible','déployable','grafana','minio','s3'],
+    fr:{ html:"<p><strong>Pipeline MLOps reproductible & déployable</strong></p><ul><li>Workflow MLOps complet couvrant versioning, orchestration et déploiement : Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna</li><li>Conteneurisation et orchestration des services via Docker et Kubernetes pour un pipeline reproductible de bout en bout</li><li>API d'inférence exposée via Docker Compose, déployée sur cluster Kubernetes avec CI/CD et rollback automatique en cas de dérive détectée (Prometheus)</li><li>Déploiement du pipeline sur Microsoft Azure, avec artefacts de modèles et jeux de données répartis entre AWS S3 et MinIO pour un stockage objet flexible</li></ul>", src:"projet — Pipeline MLOps" },
+    en:{ html:"<p><strong>Reproducible & Deployable MLOps Pipeline</strong></p><ul><li>End-to-end MLOps workflow covering versioning, orchestration and deployment: Git, Docker, Kubernetes, DVC, MLflow, ZenML, Optuna</li><li>Containerized and orchestrated services with Docker and Kubernetes for a fully reproducible pipeline</li><li>Inference API exposed via Docker Compose, deployed on a Kubernetes cluster with CI/CD and automatic rollback on detected drift (Prometheus)</li><li>Deployed the pipeline on Microsoft Azure, with model artifacts and datasets stored across AWS S3 and MinIO for flexible object storage</li></ul>", src:"project — MLOps Pipeline" },
     followups:{ fr:['Voir ses autres projets'], en:['See her other projects'] } },
 
   { id:'projet_cosmetic', terms:['cosmétique','cosmetic','reconnaissance faciale','facial','maquillage','morphologie','recommandation cosmétique','skincare'],
@@ -1325,7 +1381,7 @@ const FALLBACK = {
 };
 const DEFAULT_FOLLOWUPS = { fr:['Voir ses projets','Ses compétences','Disponibilité'], en:['See her projects','Her skills','Availability'] };
 
-function appendBotMessage(html, srcLabel, followups){
+function appendBotMessage(html, srcLabel, followups, lang){
   const row = document.createElement('div');
   row.className = 'msg-row';
   const col = document.createElement('div');
@@ -1336,7 +1392,7 @@ function appendBotMessage(html, srcLabel, followups){
   bubble.innerHTML = html + (srcLabel ? `<div class="src">📎 ${srcLabel}</div>` : '');
   col.appendChild(bubble);
 
-  const fu = followups && followups.length ? followups : DEFAULT_FOLLOWUPS[currentLang];
+  const fu = followups && followups.length ? followups : DEFAULT_FOLLOWUPS[lang || currentLang];
   if(fu && fu.length){
     const fuWrap = document.createElement('div');
     fuWrap.className = 'followups';
@@ -1363,6 +1419,10 @@ function askAI(question){
   aiBody.appendChild(typingRow);
   aiBody.scrollTop = aiBody.scrollHeight;
 
+  // Langue de réponse = langue détectée dans la question posée, avec repli sur la langue
+  // actuelle de la page si la question est trop courte/neutre pour être détectée (ex: "RAG").
+  const answerLang = detectLang(question, currentLang);
+
   const smallTalk = matchSmallTalk(question);
   const sections = smallTalk ? [] : findBestSections(question);
 
@@ -1371,14 +1431,14 @@ function askAI(question){
   setTimeout(()=>{
     typingRow.remove();
     if(smallTalk){
-      appendBotMessage(`<p>${smallTalk[currentLang]}</p>`, null, DEFAULT_FOLLOWUPS[currentLang]);
+      appendBotMessage(`<p>${smallTalk[answerLang]}</p>`, null, DEFAULT_FOLLOWUPS[answerLang], answerLang);
     } else if(sections.length){
-      const html = sections.map(s=>s[currentLang].html).join('<hr style="border:none;border-top:1px solid var(--border);margin:10px 0;">');
-      const srcs = sections.map(s=>s[currentLang].src).join(' · ');
-      const followups = sections[0].followups ? sections[0].followups[currentLang] : null;
-      appendBotMessage(html, srcs, followups);
+      const html = sections.map(s=>s[answerLang].html).join('<hr style="border:none;border-top:1px solid var(--border);margin:10px 0;">');
+      const srcs = sections.map(s=>s[answerLang].src).join(' · ');
+      const followups = sections[0].followups ? sections[0].followups[answerLang] : null;
+      appendBotMessage(html, srcs, followups, answerLang);
     } else {
-      appendBotMessage(`<p>${FALLBACK[currentLang]}</p>`, null, DEFAULT_FOLLOWUPS[currentLang]);
+      appendBotMessage(`<p>${FALLBACK[answerLang]}</p>`, null, DEFAULT_FOLLOWUPS[answerLang], answerLang);
     }
     aiSend.disabled = false;
     aiInput.focus();
